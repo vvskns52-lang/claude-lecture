@@ -15,15 +15,15 @@ html,body{height:100%;background:#1b1b1b;overflow:hidden;font-family:'Noto Sans 
 #stage>section.on{opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s}
 ul,ol{padding-left:1.2em} table{border-collapse:collapse} a{text-decoration:underline;text-underline-offset:6px}
 x-shape{display:block;flex:none} x-shape[kind="arrow-right"]{clip-path:polygon(0 30%,60% 30%,60% 0,100% 50%,60% 100%,60% 70%,0 70%)}
-#intro{background:radial-gradient(ellipse at 50% 40%,#1a2738 0%,#0d131c 70%);color:#fff;font-family:'Noto Sans KR',sans-serif}
-#iGrid{position:absolute;inset:0;background-image:linear-gradient(#ffffff0a 1px,transparent 1px),linear-gradient(90deg,#ffffff0a 1px,transparent 1px);background-size:64px 64px}
-#iPrompt{position:absolute;left:260px;top:480px;width:1400px;height:120px;display:flex;align-items:center;gap:26px;padding:0 24px 0 40px;background:#172231;border:2px solid #33445c;border-radius:60px;box-shadow:0 30px 80px #0008;opacity:0}
-#iPrompt .ico{font-size:44px;color:#e9a23b}
+#intro{background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR',sans-serif}
+#iGrid{position:absolute;inset:0;background-image:linear-gradient(#1b1b1b0a 1px,transparent 1px),linear-gradient(90deg,#1b1b1b0a 1px,transparent 1px);background-size:64px 64px}
+#iPrompt{position:absolute;left:260px;top:480px;width:1400px;height:120px;display:flex;align-items:center;gap:26px;padding:0 24px 0 40px;background:#ffffff;border:2px solid #d5d5d0;border-radius:60px;box-shadow:0 24px 60px #1b1b1b1f;opacity:0}
+#iPrompt .ico{font-size:44px;color:#1f4e8c}
 #iPrompt .txt{flex:1;font-size:40px;font-weight:500;white-space:nowrap;overflow:hidden}
-#iCaret{display:inline-block;width:4px;height:48px;margin-left:4px;vertical-align:-8px;background:#9fc3f5;animation:blink 1s steps(1) infinite}
+#iCaret{display:inline-block;width:4px;height:48px;margin-left:4px;vertical-align:-8px;background:#1f4e8c;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-#iSend{width:80px;height:80px;border-radius:50%;background:#5b9bf0;display:flex;align-items:center;justify-content:center;font-size:40px;color:#fff}
-#iApp{position:absolute;left:560px;top:300px;width:800px;height:520px;background:#f6f8fb;border-radius:20px;box-shadow:0 40px 100px #000a;overflow:hidden;opacity:0;color:#1b1b1b}
+#iSend{width:80px;height:80px;border-radius:50%;background:#1f4e8c;display:flex;align-items:center;justify-content:center;font-size:40px;color:#fff}
+#iApp{position:absolute;left:560px;top:300px;width:800px;height:520px;background:#ffffff;border:2px solid #d5d5d0;border-radius:20px;box-shadow:0 30px 80px #1b1b1b26;overflow:hidden;opacity:0;color:#1b1b1b}
 #iApp .tb{height:48px;background:#1b2330;display:flex;align-items:center;gap:10px;padding:0 20px}
 #iApp .tb i{width:14px;height:14px;border-radius:50%;background:#e2574c}#iApp .tb i:nth-child(2){background:#e9a23b}#iApp .tb i:nth-child(3){background:#4fb37c}
 #iApp .tb span{margin-left:16px;font-size:22px;color:#c9d6e3;font-weight:500}
@@ -46,17 +46,17 @@ x-shape{display:block;flex:none} x-shape[kind="arrow-right"]{clip-path:polygon(0
 .p5 .ok{position:absolute;left:76px;top:18px;font-size:32px;font-weight:900;color:#1f4e8c}.p5 .sub{margin-top:18px;font-size:22px;color:#55595e}
 .p6{left:40px;top:440px;width:460px;height:14px;background:#cfd8e3;border-radius:7px;overflow:hidden}.p6 i{display:block;height:100%;width:65%;background:#e9a23b;border-radius:7px}
 #iTags{position:absolute;left:0;top:0}
-#iTags span{position:absolute;padding:14px 30px;border-radius:40px;font-size:30px;font-weight:700;background:#ffffff14;border:2px solid #ffffff33;color:#e8eef5;opacity:0;white-space:nowrap}
+#iTags span{position:absolute;padding:14px 30px;border-radius:40px;font-size:30px;font-weight:700;background:#ffffff;border:2px solid #1f4e8c;color:#1f4e8c;opacity:0;white-space:nowrap}
 #iTitle{position:absolute;left:150px;top:290px;width:820px;opacity:0}
-#iTitle .k{font-size:30px;font-weight:700;letter-spacing:14px;color:#e9a23b}
+#iTitle .k{font-size:30px;font-weight:700;letter-spacing:14px;color:#1f4e8c}
 #iTitle h1{font-size:120px;font-weight:900;line-height:1.12;margin:20px 0 28px}
-#iTitle .l{height:4px;width:0;background:#5b9bf0;margin-bottom:28px}
-#iTitle .s{font-size:44px;color:#c9d6e3}#iTitle .n{font-size:42px;font-weight:700;color:#e9a23b;margin-top:22px}
+#iTitle .l{height:3px;width:0;background:#1b1b1b;margin-bottom:28px}
+#iTitle .s{font-size:44px;color:#55595e}#iTitle .n{font-size:42px;font-weight:700;color:#1b1b1b;margin-top:22px}
 .introBtns{position:absolute;right:48px;bottom:44px;display:flex;gap:16px}
-.introBtns button{font:700 30px 'Noto Sans KR',sans-serif;border:0;border-radius:40px;padding:14px 32px;cursor:pointer;color:#fff;background:#2b3646}
-.introBtns button.go{background:#e98a3a}
-#introProgWrap{position:absolute;left:0;bottom:0;width:1920px;height:10px;background:#ffffff1a}
-#introProg{height:10px;width:0;background:#e98a3a}
+.introBtns button{font:700 30px 'Noto Sans KR',sans-serif;border:0;border-radius:40px;padding:14px 32px;cursor:pointer;color:#1b1b1b;background:#f0f0ec;border:2px solid #d5d5d0}
+.introBtns button.go{background:#1f4e8c;color:#fff;border-color:#1f4e8c}
+#introProgWrap{position:absolute;left:0;bottom:0;width:1920px;height:10px;background:#1b1b1b14}
+#introProg{height:10px;width:0;background:#1f4e8c}
 #stage>section.on .m{animation:mIn .75s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i)*90ms + 120ms)}
 #stage>section.on img.m{animation:mIn .75s cubic-bezier(.2,.7,.2,1) both,kb 2.4s ease-out both;animation-delay:calc(var(--i)*90ms + 120ms)}
 #stage>section.on .m img{animation:kb 2.4s ease-out both}
@@ -1192,7 +1192,7 @@ function play(){
   // typing
   [...TEXT].forEach((c,i)=>later(()=>{$('#iType').textContent=TEXT.slice(0,i+1)},900+i*62));
   const tEnd=900+TEXT.length*62;
-  A($('#iSend'),[{transform:'scale(1)'},{transform:'scale(1.25)',background:'#e9a23b'},{transform:'scale(1)'}],{duration:500,delay:tEnd+250,easing:'ease-in-out',fwd:1});
+  A($('#iSend'),[{transform:'scale(1)'},{transform:'scale(1.25)',background:'#2f6fc4'},{transform:'scale(1)'}],{duration:500,delay:tEnd+250,easing:'ease-in-out',fwd:1});
   // prompt moves up and shrinks
   const t1=tEnd+700;
   A(P,[{transform:'none',opacity:1},{transform:'translateY(-400px) scale(.62)',opacity:.85}],{duration:800,delay:t1,fwd:1});
