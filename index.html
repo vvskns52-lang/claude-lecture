@@ -15,6 +15,21 @@ html,body{height:100%;background:#1b1b1b;overflow:hidden;font-family:'Noto Sans 
 #stage>section.on{opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s}
 ul,ol{padding-left:1.2em} table{border-collapse:collapse} a{text-decoration:underline;text-underline-offset:6px}
 x-shape{display:block;flex:none} x-shape[kind="arrow-right"]{clip-path:polygon(0 30%,60% 30%,60% 0,100% 50%,60% 100%,60% 70%,0 70%)}
+#intro{background:#0e141c}
+#introCanvas{position:absolute;left:0;top:0;width:1920px;height:1080px;image-rendering:pixelated;image-rendering:crisp-edges}
+#introCard{position:absolute;left:760px;top:250px;width:1020px;padding:56px 64px;background:rgba(18,26,38,.92);border-top:8px solid #9fd0f0;border-radius:6px;color:#fff;opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+#introCard.show{opacity:1;transform:none}
+#introCard .k{font-size:30px;font-weight:700;letter-spacing:14px;color:#e9a23b}
+#introCard h1{font-size:104px;font-weight:900;line-height:1.15;margin:18px 0 26px}
+#introCard .l{height:3px;background:#ffffff33;margin-bottom:26px}
+#introCard .s{font-size:40px;color:#c9d6e3}
+#introCard .n{font-size:42px;font-weight:700;color:#e9a23b;margin-top:22px}
+#introCard .p{display:inline-block;margin-top:34px;padding:12px 30px;background:#9fd0f0;color:#10202c;font-size:30px;font-weight:700;letter-spacing:6px;border-radius:6px}
+.introBtns{position:absolute;right:48px;bottom:44px;display:flex;gap:16px}
+.introBtns button{font:700 30px 'Noto Sans KR',sans-serif;border:0;border-radius:40px;padding:14px 32px;cursor:pointer;color:#fff;background:#2b3646}
+.introBtns button.go{background:#e98a3a}
+#introProgWrap{position:absolute;left:0;bottom:0;width:1920px;height:10px;background:#ffffff22}
+#introProg{height:10px;width:0;background:#e98a3a}
 #bar{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:8px;opacity:0;transition:opacity .3s;font:14px 'Noto Sans KR',sans-serif;color:#fff}
 body:hover #bar{opacity:1}
 #bar button{background:#ffffff22;color:#fff;border:0;border-radius:6px;padding:6px 14px;font:inherit;cursor:pointer}
@@ -23,6 +38,10 @@ body:hover #bar{opacity:1}
 </head>
 <body>
 <div id="stage">
+<section id="intro"><canvas id="introCanvas" aria-label="기술실에서 선생님이 수업 자료를 만들고 교실에서 학생들이 손을 드는 픽셀 아트 애니메이션"></canvas>
+<div id="introCard"><div class="k">TECHNOLOGY · AI CLASS</div><h1>AI로 만드는<br>수업 자료</h1><div class="l"></div><div class="s">수업 슬라이드랑 웹앱, 저는 이렇게 만들어요</div><div class="n">윤슬중 기술 이주형T</div><div class="p">직접 만들고 · 바로 수업에</div></div>
+<div class="introBtns"><button id="replay">↺ 다시 보기</button><button id="toCover" class="go">표지로 ▸</button></div>
+<div id="introProgWrap"><div id="introProg"></div></div></section>
 <section id="cover" style="display:flex; flex-direction:column; gap:32px; justify-content:center; padding:128px; background:#fcfcfa">
   <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; font-weight:700; letter-spacing:2px; color:#1f4e8c"></p>
   <h1 style="width:860px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:104px; font-weight:900; line-height:1.2; color:#1b1b1b">AI로 만드는<br>수업 자료</h1>
@@ -1106,13 +1125,228 @@ body:hover #bar{opacity:1}
 </div>
 <div id="bar"><button id="prev">◀ 이전</button><span id="num"></span><button id="next">다음 ▶</button><button id="fs">전체 화면</button></div>
 <script>
+// Pixel-art intro motion graphic (original). Draws on a 480x270 canvas, scaled up.
+(function () {
+  const W = 480, H = 270;
+  const cv = document.getElementById('introCanvas');
+  const ctx = cv.getContext('2d');
+  cv.width = W; cv.height = H;
+  const card = document.getElementById('introCard');
+  const bar = document.getElementById('introProg');
+  const TOTAL = 15000;
+  let t0 = 0, raf = 0, running = false;
+
+  const C = {
+    wall: '#cfd9e4', wallDark: '#b8c5d3', base: '#8b9bb0', floorA: '#e6e9ee', floorB: '#d9dee6', line: '#c3cad5',
+    wood: '#b9824f', woodDark: '#8a5a33', woodLight: '#d6a16b', metal: '#7c8796', metalDark: '#4f5866',
+    board: '#f7f8f6', boardFrame: '#6f7c8c', ink: '#1b1b1b', acc: '#1f4e8c', tint: '#dbe6f3', warm: '#e9a23b',
+    green: '#2f7d5b', greenL: '#4fa37c', sky: '#9fd0f0', skyL: '#c9e7fa', chalk: '#2c4a3e', red: '#d9573f', white: '#ffffff'
+  };
+  const R = (x, y, w, h, c) => { ctx.fillStyle = c; ctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); };
+  const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+  const ease = v => v < .5 ? 2 * v * v : 1 - Math.pow(-2 * v + 2, 2) / 2;
+  const seg = (t, a, b) => clamp((t - a) / (b - a));
+
+  // ---------- sprites ----------
+  const PAL = { h: '#3a2a1e', s: '#f2c9a0', e: '#1b1b1b', m: '#c0645a', w: '#f4f4f0', a: '#2f7d5b', A: '#25664a', p: '#2b3a55', b: '#1b1b1b', g: '#1b1b1b' };
+  const HEAD = [
+    '....hhhh....',
+    '...hhhhhh...',
+    '..hhhhhhhh..',
+    '..hsssssshh.',
+    '..ssssssss..',
+    '..gegssgeg..',
+    '..ssssssss..',
+    '...ssmmss...',
+    '....ssss....'];
+  const BACKHEAD = [
+    '....hhhh....',
+    '...hhhhhh...',
+    '..hhhhhhhh..',
+    '..hhhhhhhh..',
+    '..hhhhhhhh..',
+    '..hhhhhhhh..',
+    '..shhhhhhs..',
+    '...hhhhhh...',
+    '....ssss....'];
+  const BODY = {
+    down: ['..wwaaaaww..', '.wwaaaaaaww.', '.swaaAAaaws.', '.s.aaaaaa.s.', '.s.aaaaaa.s.', '...aaaaaa...'],
+    swingA: ['..wwaaaaww..', '.wwaaaaaaww.', 's.waaAAaaw.s', '...aaaaaa...', '...aaaaaa...', '...aaaaaa...'],
+    wave: ['..wwaaaaww.s', '.wwaaaaaawws', '.swaaAAaaw..', '.s.aaaaaa...', '.s.aaaaaa...', '...aaaaaa...'],
+    back: ['..wwwwwwww..', '.wwwwAAwwww.', '.swwwAAwwws.', '.s.wwAAww.s.', '.s.wwwwww.s.', '...wwwwww...'],
+  };
+  const LEGS = {
+    stand: ['...pppppp...', '...pp..pp...', '...pp..pp...', '...pp..pp...', '..bbb..bbb..'],
+    walkA: ['...pppppp...', '..pp....pp..', '..pp....pp..', '.bbb.....pp.', '.........bbb'],
+    walkB: ['...pppppp...', '...pp..pp...', '....pppp....', '....pppp....', '....bbbb....'],
+  };
+  const WAVEUP = [[11, -3], [11, -2], [11, -1], [10, -4]]; // extra hand pixels
+  function sprite(rows, x, y, k) {
+    rows.forEach((row, j) => { for (let i = 0; i < row.length; i++) { const c = row[i]; if (c !== '.') R(x + i * k, y + j * k, k, k, PAL[c]); } });
+  }
+  function teacher(x, feetY, pose, k = 3, frame = 0) {
+    const top = feetY - 20 * k;
+    sprite(pose === 'back' ? BACKHEAD : HEAD, x, top, k);
+    const body = pose === 'back' ? BODY.back : pose === 'wave' ? BODY.wave : (pose === 'walk' && frame ? BODY.swingA : BODY.down);
+    sprite(body, x, top + 9 * k, k);
+    const legs = pose === 'walk' ? (frame ? LEGS.walkA : LEGS.walkB) : LEGS.stand;
+    sprite(legs, x, top + 15 * k, k);
+    if (pose === 'wave' && frame) WAVEUP.forEach(([i, j]) => R(x + i * k, top + (9 + j) * k, k, k, PAL.s));
+    R(x + 2 * k, feetY + 1, 8 * k, 2, 'rgba(0,0,0,.12)');
+  }
+  function student(x, y, hair, up, k = 2) {
+    const rows = ['..hhhh..', '.hhhhhh.', '.hhhhhh.', '.hssssh.', '.seesse.', '..ssss..', '.cccccc.', 'cccccccc'];
+    const pal = { h: hair, s: '#f2c9a0', e: '#1b1b1b', c: up ? '#4f7fb8' : '#6b8fbf' };
+    rows.forEach((row, j) => { for (let i = 0; i < 8; i++) if (row[i] !== '.') R(x + i * k, y + j * k, k, k, pal[row[i]]); });
+    if (up) { R(x + 15, y - 8, 2, 14, '#6b8fbf'); R(x + 14, y - 11, 4, 4, '#f2c9a0'); }
+    R(x - 4, y + 16, 24, 6, C.wood); R(x - 4, y + 22, 24, 2, C.woodDark);
+  }
+  function sparkle(x, y, s, c = C.warm) { R(x - s, y, s * 2 + 1, 1, c); R(x, y - s, 1, s * 2 + 1, c); }
+
+  // ---------- scene A: 기술실 ----------
+  function sceneA(t, opt) {
+    R(0, 0, W, 150, C.wall); R(0, 0, W, 6, C.wallDark); R(0, 146, W, 6, C.base);
+    for (let y = 152; y < H; y += 20) for (let x = 0; x < W; x += 20) R(x, y, 20, 20, ((x + y) / 20) % 2 ? C.floorA : C.floorB);
+    for (let y = 152; y < H; y += 20) R(0, y, W, 1, C.line);
+    // door
+    R(18, 58, 44, 92, C.woodDark); R(22, 62, 36, 88, C.wood); R(50, 104, 4, 4, C.warm);
+    // whiteboard
+    R(78, 26, 128, 78, C.boardFrame); R(82, 30, 120, 70, C.board); R(82, 100, 120, 4, C.metal);
+    // pegboard with tools
+    R(218, 36, 78, 66, C.woodLight);
+    for (let y = 42; y < 100; y += 8) for (let x = 224; x < 294; x += 8) R(x, y, 1, 1, C.woodDark);
+    R(226, 46, 4, 30, C.metalDark); R(222, 46, 12, 7, C.metal);            // hammer
+    R(242, 44, 18, 6, C.metal); R(246, 50, 4, 22, C.woodDark);              // saw-ish
+    R(266, 46, 4, 28, C.metal); R(262, 44, 12, 5, C.metal);                 // wrench
+    R(280, 48, 8, 20, C.red); R(282, 68, 4, 8, C.metalDark);                 // screwdriver
+    // shelf + blocks
+    R(306, 54, 64, 4, C.woodDark); R(310, 40, 12, 14, C.warm); R(324, 44, 10, 10, C.greenL); R(336, 36, 8, 18, C.acc); R(348, 46, 16, 8, C.wood);
+    // window
+    R(384, 26, 74, 64, C.boardFrame); R(388, 30, 66, 56, C.sky); R(388, 30, 66, 20, C.skyL); R(420, 30, 2, 56, C.boardFrame); R(388, 56, 66, 2, C.boardFrame);
+    // plant
+    R(456, 128, 14, 20, C.woodDark); R(450, 104, 26, 26, C.green); R(456, 98, 14, 10, C.greenL);
+    // workbench
+    R(64, 160, 120, 10, C.wood); R(64, 170, 120, 4, C.woodDark); R(70, 174, 6, 26, C.woodDark); R(172, 174, 6, 26, C.woodDark);
+    R(78, 150, 18, 10, C.metal); R(82, 146, 10, 4, C.metalDark); R(110, 154, 50, 6, C.woodLight); R(118, 150, 30, 4, C.woodLight);
+    // pc desk
+    R(232, 168, 100, 8, C.wood); R(232, 176, 100, 3, C.woodDark); R(238, 179, 6, 24, C.woodDark); R(320, 179, 6, 24, C.woodDark);
+    R(262, 128, 52, 36, C.metalDark); R(266, 132, 44, 28, opt.screenOn ? '#10202c' : '#2a323d'); R(284, 164, 8, 4, C.metalDark); R(274, 166, 28, 2, C.metalDark);
+    if (opt.screenOn) {
+      const cols = ['#7fd3a6', '#f2b66d', '#8fb8f0', '#e98c8c', '#7fd3a6'];
+      const n = Math.floor(opt.code * 10);
+      for (let i = 0; i < Math.min(n, 5); i++) R(270 + (i % 2) * 4, 136 + i * 5, 10 + ((i * 7) % 20), 2, cols[i]);
+      if (n >= 6) { R(292, 140, 12, 12, C.acc); R(294, 142, 8, 3, C.white); }
+    }
+    R(270, 170, 30, 3, '#d7dbe2');
+    // whiteboard contents (icons that landed)
+    const landed = opt.landed || 0;
+    if (landed > 0) boardIcon(0, 100, 52);
+    if (landed > 1) boardIcon(1, 136, 52);
+    if (landed > 2) boardIcon(2, 172, 52);
+  }
+  function boardIcon(kind, cx, cy, s = 1) {
+    const x = cx - 14 * s, y = cy - 11 * s;
+    if (kind === 0) { // slide
+      R(x, y, 28 * s, 22 * s, C.acc); R(x + 3 * s, y + 4 * s, 14 * s, 3 * s, C.white); R(x + 3 * s, y + 10 * s, 20 * s, 2 * s, C.tint); R(x + 3 * s, y + 14 * s, 16 * s, 2 * s, C.tint);
+    } else if (kind === 1) { // webapp window with button
+      R(x, y, 28 * s, 22 * s, C.ink); R(x + 1 * s, y + 4 * s, 26 * s, 17 * s, C.white); R(x + 2 * s, y + 1 * s, 2 * s, 2 * s, C.red); R(x + 5 * s, y + 1 * s, 2 * s, 2 * s, C.warm);
+      R(x + 6 * s, y + 12 * s, 16 * s, 6 * s, C.acc);
+    } else { // game pad
+      R(x + 2 * s, y + 6 * s, 24 * s, 12 * s, C.green); R(x + 6 * s, y + 9 * s, 2 * s, 6 * s, C.white); R(x + 4 * s, y + 11 * s, 6 * s, 2 * s, C.white);
+      R(x + 18 * s, y + 9 * s, 3 * s, 3 * s, C.warm); R(x + 21 * s, y + 12 * s, 3 * s, 3 * s, C.red);
+    }
+  }
+
+  // ---------- scene B: 교실 ----------
+  const HAIRS = ['#2b2118', '#5a3a22', '#1b1b1b', '#7a4b2a', '#2b2118', '#3d2a1a', '#1b1b1b', '#6b3f22', '#2b2118', '#4a3020', '#1b1b1b', '#5a3a22'];
+  function sceneB(t) {
+    R(0, 0, W, 150, '#dfe7dc'); R(0, 0, W, 6, '#c9d6c6'); R(0, 146, W, 6, '#9fb19a');
+    for (let y = 152; y < H; y += 20) for (let x = 0; x < W; x += 20) R(x, y, 20, 20, ((x + y) / 20) % 2 ? '#e9dcc4' : '#e1d2b6');
+    // board
+    R(70, 18, 300, 108, C.woodDark); R(74, 22, 292, 100, C.chalk); R(74, 122, 292, 4, C.wood);
+    // webapp on the board: road + moving car + gauge
+    R(110, 34, 220, 78, C.white); R(110, 34, 220, 8, C.ink); R(114, 37, 3, 3, C.red); R(119, 37, 3, 3, C.warm); R(124, 37, 3, 3, C.greenL);
+    R(116, 76, 140, 26, '#5d6673'); for (let x = 118; x < 254; x += 18) R(x, 88, 10, 2, C.white);
+    const carX = 116 + ((t / 9) % 140);
+    R(carX, 78, 22, 8, C.warm); R(carX + 4, 74, 12, 5, '#f4c37a'); R(carX + 3, 85, 5, 5, C.ink); R(carX + 15, 85, 5, 5, C.ink);
+    // gauge
+    R(266, 50, 56, 52, C.tint); const g = 0.3 + 0.6 * ((Math.sin(t / 500) + 1) / 2);
+    for (let i = 0; i < 6; i++) R(272 + i * 8, 92 - i * 6, 6, i * 6 + 4, i / 6 < g ? C.acc : '#b9c7d8');
+    R(116, 48, 70, 6, C.acc); R(116, 58, 100, 4, '#c7cfda');
+    // teacher at right
+    teacher(392, 150, (Math.floor(t / 300) % 2) ? 'wave' : 'down', 3, Math.floor(t / 300) % 2);
+    // students
+    const raised = Math.floor((t - 600) / 260);
+    let idx = 0;
+    for (let row = 0; row < 3; row++) for (let col = 0; col < 6; col++) {
+      const x = 60 + col * 64 + (row % 2) * 10, y = 168 + row * 32;
+      student(x, y, HAIRS[(idx + row) % HAIRS.length], idx < raised && (idx % 3 !== 1 || idx < raised - 4));
+      idx++;
+    }
+    if (t > 1200) for (let i = 0; i < 4; i++) { const a = (t / 400 + i * 1.7); sparkle(90 + i * 90 + Math.sin(a) * 8, 160 + Math.cos(a) * 6, 2 + (i % 2)); }
+  }
+
+  // ---------- main loop ----------
+  function frame(now) {
+    if (!running) return;
+    const t = now - t0;
+    ctx.clearRect(0, 0, W, H);
+    if (t < 6400) {
+      // scene A
+      const walk = seg(t, 600, 3200);
+      const atPc = t >= 3200;
+      const code = seg(t, 3300, 4600);
+      const flyStart = 4600;
+      const landed = t < flyStart ? 0 : Math.min(3, Math.floor((t - flyStart) / 500) + (t > flyStart + 400 ? 1 : 0) - 0);
+      sceneA(t, { screenOn: t > 3300, code, landed: Math.max(0, Math.floor((t - flyStart - 450) / 500) + 1) });
+      if (!atPc) {
+        const d = ease(seg(walk, 0, .3)), r = ease(seg(walk, .3, 1));
+        const x = 26 + r * 236, feet = 160 + d * 58 - r * 10;
+        teacher(x, feet, walk > 0 && walk < 1 ? 'walk' : 'down', 3, Math.floor(t / 160) % 2);
+      } else teacher(262, 208, 'back', 3);
+      // flying icons
+      for (let k = 0; k < 3; k++) {
+        const s0 = flyStart + k * 500, p = seg(t, s0, s0 + 450);
+        if (p > 0 && p < 1) {
+          const e = ease(p), sx = 288, sy = 144, tx = 100 + k * 36, ty = 52;
+          const x = sx + (tx - sx) * e, y = sy + (ty - sy) * e - Math.sin(p * Math.PI) * 40;
+          boardIcon(k, x, y);
+          sparkle(x + 16, y - 12, 3); sparkle(x - 18, y + 8, 2, C.acc);
+        }
+      }
+      if (t > 3300 && t < 4600) for (let i = 0; i < 3; i++) sparkle(270 + i * 18, 122 - ((t / 6 + i * 20) % 20), 1, C.acc);
+    } else if (t < 10600) {
+      sceneB(t - 6400);
+    } else {
+      sceneA(t, { screenOn: true, code: 1, landed: 3 });
+      ctx.fillStyle = 'rgba(16,24,36,.45)'; ctx.fillRect(0, 0, W, H);
+      const wf = Math.floor(t / 320) % 2;
+      teacher(84, 262, wf ? 'wave' : 'down', 3, wf);
+      for (let i = 0; i < 6; i++) { const a = t / 600 + i; if (Math.sin(a * 2) > 0.2) sparkle(40 + i * 80, 30 + (i % 3) * 70, 2 + (i % 2), i % 2 ? C.warm : '#9fd0f0'); }
+    }
+    // transitions (fade through black)
+    const fades = [[0, 600, 1, 0], [6000, 6400, 0, 1], [6400, 6800, 1, 0], [10200, 10600, 0, 1], [10600, 11000, 1, 0]];
+    for (const [a, b, f, to] of fades) if (t >= a && t < b) { const p = (t - a) / (b - a); ctx.fillStyle = `rgba(10,14,20,${f + (to - f) * p})`; ctx.fillRect(0, 0, W, H); }
+    card.classList.toggle('show', t > 11000);
+    bar.style.width = (clamp(t / TOTAL) * 100) + '%';
+    raf = requestAnimationFrame(frame);
+  }
+  window.Intro = {
+    play() { cancelAnimationFrame(raf); card.classList.remove('show'); running = true; t0 = performance.now(); raf = requestAnimationFrame(frame); },
+    stop() { running = false; cancelAnimationFrame(raf); }
+  };
+})();
+
+</script>
+<script>
 const S=[...document.querySelectorAll('#stage>section')];let i=0;
 function fit(){const k=Math.min(innerWidth/1920,innerHeight/1080);const st=document.getElementById('stage');st.style.transform=`scale(${k}) translate(-50%,-50%)`;}
-function go(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,j)=>s.classList.toggle('on',j===i));document.getElementById('num').textContent=(i+1)+' / '+S.length;history.replaceState(null,'','#slide-'+(i+1));}
+function go(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,j)=>s.classList.toggle('on',j===i));document.getElementById('num').textContent=i?i+' / '+(S.length-1):'인트로';history.replaceState(null,'',i?'#slide-'+i:'#intro');if(i===0)Intro.play();else Intro.stop();}
 addEventListener('resize',fit);fit();
-const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]:0);
+replay.onclick=e=>{e.stopPropagation();Intro.play()};toCover.onclick=e=>{e.stopPropagation();go(1)};
 addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(i+1)}else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(i-1)}else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1);else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
-document.getElementById('stage').addEventListener('click',e=>{if(e.target.closest('a'))return;go(e.clientX<innerWidth/3?i-1:i+1)});
+document.getElementById('stage').addEventListener('click',e=>{if(e.target.closest('a,button'))return;go(e.clientX<innerWidth/3?i-1:i+1)});
 prev.onclick=()=>go(i-1);next.onclick=()=>go(i+1);fs.onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
 </script>
 </body>
