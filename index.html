@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI로 만드는 수업 자료 · 이주형T</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#1b1b1b;overflow:hidden;font-family:'Noto Sans KR',Arial,sans-serif}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0}
+#stage>section{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s linear .6s}
+#stage>section.on{opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s}
+ul,ol{padding-left:1.2em} table{border-collapse:collapse} a{text-decoration:underline;text-underline-offset:6px}
+x-shape{display:block;flex:none} x-shape[kind="arrow-right"]{clip-path:polygon(0 30%,60% 30%,60% 0,100% 50%,60% 100%,60% 70%,0 70%)}
+#bar{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:8px;opacity:0;transition:opacity .3s;font:14px 'Noto Sans KR',sans-serif;color:#fff}
+body:hover #bar{opacity:1}
+#bar button{background:#ffffff22;color:#fff;border:0;border-radius:6px;padding:6px 14px;font:inherit;cursor:pointer}
+#bar button:hover{background:#ffffff44}
+</style>
+</head>
+<body>
+<div id="stage">
+<section id="cover" style="display:flex; flex-direction:column; gap:32px; justify-content:center; padding:128px; background:#fcfcfa">
+  <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; font-weight:700; letter-spacing:2px; color:#1f4e8c"></p>
+  <h1 style="width:860px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:104px; font-weight:900; line-height:1.2; color:#1b1b1b">AI로 만드는<br>수업 자료</h1>
+  <p style="width:860px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; line-height:1.4; color:#55595e">수업 슬라이드랑 웹앱, 저는 이렇게 만들어요</p>
+  <p style="width:860px; padding:28px 0 0; border-top:3px solid #1b1b1b; font-family:'Noto Sans KR', Arial, sans-serif; font-size:40px; font-weight:700; color:#1b1b1b">윤슬중 기술 이주형T</p>
+  <img src="img-53e22915.png" alt="주형T 수업자료실 첫 화면" style="position:absolute; top:300px; left:1040px; width:752px; height:423px; border:2px solid #d5d5d0">
+  <p style="position:absolute; top:748px; left:1040px; width:752px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:32px; color:#6b7076">주형T 수업자료실 · <a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/" style="color:#1f4e8c">leejuhyung-lessons.vercel.app</a></p>
+  
+</section>
+<section id="agenda" style="display:flex; flex-direction:column; gap:36px; padding:128px 128px 160px; background:#fcfcfa">
+  <div style="display:flex; flex-direction:column; gap:12px; padding:0 0 24px; border-bottom:3px solid #1b1b1b">
+    <h2 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.2; color:#1b1b1b">오늘 이야기</h2>
+  </div>
+  <div style="display:flex; flex-direction:column">
+    <div style="display:flex; flex-direction:row; gap:32px; align-items:center; padding:24px 8px; border-bottom:1px solid #d5d5d0">
+      <p style="width:56px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1f4e8c">1</p>
+      <p style="width:520px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1b1b1b">세 가지 개념</p>
+      <p style="flex:1; font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; color:#55595e">웹앱, 아티팩트, 스킬</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:32px; align-items:center; padding:24px 8px; border-bottom:1px solid #d5d5d0">
+      <p style="width:56px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1f4e8c">2</p>
+      <p style="width:520px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1b1b1b">결과물 둘러보기</p>
+      <p style="flex:1; font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; color:#55595e">실제 수업 자료 시연</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:32px; align-items:center; padding:24px 8px; border-bottom:1px solid #d5d5d0">
+      <p style="width:56px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1f4e8c">3</p>
+      <p style="width:520px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1b1b1b">아티팩트와 스킬</p>
+      <p style="flex:1; font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; color:#55595e">스킬 등록 방법, 내가 쓰는 스킬 2개</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:32px; align-items:center; padding:24px 8px; border-bottom:1px solid #d5d5d0">
+      <p style="width:56px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1f4e8c">4</p>
+      <p style="width:520px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1b1b1b">제작 과정</p>
+      <p style="flex:1; font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; color:#55595e">요청 → 확인 → 수정</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:32px; align-items:center; padding:24px 8px; border-bottom:1px solid #d5d5d0">
+      <p style="width:56px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1f4e8c">5</p>
+      <p style="width:520px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:44px; font-weight:700; color:#1b1b1b">주의할 점 · 시작하기</p>
+      <p style="flex:1; font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; color:#55595e">처음 해 볼 것, 질의응답</p>
+    </div>
+  </div>
+  <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:28px; color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 02</p>
+  
+</section>
+<section id="part1" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px;justify-content:center">
+<p style="font-size:52px;font-weight:700;line-height:1.2;color:#1f4e8c">1부</p>
+<h2 style="font-size:92px;font-weight:900;line-height:1.2;color:#1b1b1b">세 가지 개념</h2>
+<p style="width:1500px;font-size:42px;line-height:1.5;color:#55595e">오늘 계속 나오는 세 단어부터 정리하고 갈게요</p>
+<div style="display:flex;flex-direction:column;padding:28px 0 0;border-top:3px solid #1b1b1b">
+<ul style="font-size:38px;line-height:1.7;color:#1b1b1b">
+<li>웹앱과 PPT의 차이</li>
+<li>HTML 파일 하나의 장점</li>
+<li>아티팩트·스킬 미리 보기</li>
+</ul>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 03</p>
+
+</section>
+<section id="concepts" style="background:#fcfcfa">
+  <p id="e1-mmf0gw" style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:28px; color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 04</p>
+  <div id="p80d1b6011eedr0-b8e31ab1" style="position:absolute; top:128px; left:128px; width:1664px; height:150px; display:flex; flex-direction:column; gap:10px; border-bottom:3px solid #1b1b1b">
+    <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:30px; font-weight:500; color:#6b7076">1부 · 세 가지 개념</p>
+    <h2 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.2; color:#1b1b1b">이 세 단어만 알면 돼요</h2>
+  </div>
+  <div id="p80d1b6011eedr1-b8e31ab1" style="position:absolute; top:316px; left:128px; width:1664px; height:560px; display:grid; gap:0; grid-template-columns:1fr 1fr 1fr">
+    <div style="display:flex; flex-direction:column; gap:20px; padding:8px 44px 8px 0">
+      <svg aria-label="버튼을 누르는 웹페이지 아이콘" width="112" height="112" viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.7500)"><rect x="5" y="9" width="54" height="44" rx="5" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><line x1="5" y1="20" x2="59" y2="20" stroke="#1b1b1b" stroke-width="3"/><circle cx="12" cy="14.5" r="1.8" fill="#1b1b1b"/><circle cx="18" cy="14.5" r="1.8" fill="#1b1b1b"/><rect x="16" y="29" width="32" height="12" rx="4" fill="#1f4e8c"/><path d="M40 36 L40 54 L44.5 49.5 L48 57 L51 55.5 L47.5 48.5 L53.5 48.5 Z" fill="#fff" stroke="#1b1b1b" stroke-width="2.5"/></g></svg>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.2; color:#1f4e8c">웹앱</p>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:40px; font-weight:700; line-height:1.4; color:#1b1b1b">누르면 반응하는 웹페이지</p>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:34px; line-height:1.5; color:#55595e"></p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; padding:8px 44px; border-left:1px solid #d5d5d0">
+      <svg aria-label="대화 창 옆에 결과물 창이 열린 아이콘" width="112" height="112" viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.7500)"><rect x="4" y="8" width="56" height="48" rx="5" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><line x1="27" y1="8" x2="27" y2="56" stroke="#1b1b1b" stroke-width="3"/><rect x="9" y="15" width="14" height="7" rx="3" fill="#c9c9c3"/><rect x="9" y="26" width="14" height="7" rx="3" fill="#dbe6f3" stroke="#1f4e8c" stroke-width="1.5"/><rect x="9" y="37" width="14" height="7" rx="3" fill="#c9c9c3"/><rect x="32" y="14" width="23" height="36" rx="3" fill="#dbe6f3"/><rect x="36" y="19" width="15" height="4" rx="2" fill="#1f4e8c"/><rect x="36" y="27" width="15" height="10" rx="2" fill="#fff"/><rect x="36" y="41" width="9" height="4" rx="2" fill="#1f4e8c"/></g></svg>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.2; color:#1f4e8c">아티팩트</p>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:40px; font-weight:700; line-height:1.4; color:#1b1b1b">AI가 만들어 링크로 주는 결과물</p>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:34px; line-height:1.5; color:#55595e">슬라이드·문서·웹앱이 대화 옆 창에 바로 열려요</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; padding:8px 0 8px 44px; border-left:1px solid #d5d5d0">
+      <svg aria-label="규칙이 체크된 설명서 문서 아이콘" width="112" height="112" viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.7500)"><path d="M14 5 H40 L52 17 V59 H14 Z" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><path d="M40 5 V17 H52" stroke="#1b1b1b" stroke-width="3"/><path d="M20 26 l3.5 3.5 l6 -7" stroke="#1f4e8c" stroke-width="3"/><line x1="33" y1="26.5" x2="46" y2="26.5" stroke="#c9c9c3" stroke-width="3"/><path d="M20 37 l3.5 3.5 l6 -7" stroke="#1f4e8c" stroke-width="3"/><line x1="33" y1="37.5" x2="46" y2="37.5" stroke="#c9c9c3" stroke-width="3"/><path d="M20 48 l3.5 3.5 l6 -7" stroke="#1f4e8c" stroke-width="3"/><line x1="33" y1="48.5" x2="46" y2="48.5" stroke="#c9c9c3" stroke-width="3"/></g></svg>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.2; color:#1f4e8c">스킬</p>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:40px; font-weight:700; line-height:1.4; color:#1b1b1b">내 방식을 적어 둔 설명서</p>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:34px; line-height:1.5; color:#55595e">한 번 등록해 두면 매번 말 안 해도 그 방식대로 만들어 줘요</p>
+    </div>
+  </div>
+  
+</section>
+<section id="webapp-what" style="background:#fcfcfa">
+  <p id="e1-1jaxppp" style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:28px; color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 05</p>
+  <div id="pbed381e7299fr0-c0f8e31d" style="position:absolute; top:128px; left:128px; width:1664px; height:156px; display:flex; flex-direction:column; gap:10px; padding:0 0 24px; border-bottom:3px solid #1b1b1b">
+    <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:30px; font-weight:500; color:#6b7076">개념 ① · 웹앱</p>
+    <h2 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.2; color:#1b1b1b">PPT랑 웹앱, 뭐가 다를까?</h2>
+  </div>
+  <div id="pbed381e7299fr1-c0f8e31d" style="position:absolute; top:311px; left:128px; width:1664px; height:429px; display:grid; grid-template-columns:1fr 1fr">
+    <div style="display:flex; flex-direction:column; gap:20px; padding:8px 48px 8px 0">
+      <div style="display:flex; flex-direction:row; gap:24px; align-items:center; justify-content:space-between">
+        <h3 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:46px; font-weight:700; color:#55595e">PPT · 슬라이드</h3>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 210" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-label="차례로 넘기는 PPT 슬라이드 그림" style="width:300px; height:210px; flex:0 0 auto"><rect x="20" y="10" width="260" height="150" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="4"/><rect x="44" y="34" width="120" height="16" rx="4" fill="#1b1b1b"/><rect x="44" y="64" width="190" height="10" rx="4" fill="#c9c9c3"/><rect x="44" y="84" width="170" height="10" rx="4" fill="#c9c9c3"/><rect x="44" y="104" width="150" height="10" rx="4" fill="#c9c9c3"/><circle cx="110" cy="188" r="16" fill="#f0f0ec" stroke="#1b1b1b" stroke-width="3"/><path d="M114 180 l-8 8 l8 8" stroke="#1b1b1b" stroke-width="3.5"/><circle cx="190" cy="188" r="16" fill="#1b1b1b"/><path d="M186 180 l8 8 l-8 8" stroke="#fff" stroke-width="3.5"/><circle cx="140" cy="188" r="4" fill="#6b7076"/><circle cx="150" cy="188" r="4" fill="#1b1b1b"/><circle cx="160" cy="188" r="4" fill="#6b7076"/></svg>
+      </div>
+      <ul style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; line-height:1.6; color:#1b1b1b">
+        <li>정해진 장면을 차례로 넘김</li>
+        <li>교사가 진행하고 학생은 봄</li>
+        <li>퀴즈 답은 교사가 공개</li>
+      </ul>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; padding:8px 0 8px 48px; border-left:1px solid #d5d5d0">
+      <div style="display:flex; flex-direction:row; gap:24px; align-items:center; justify-content:space-between">
+        <h3 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:46px; font-weight:700; color:#1f4e8c">웹앱</h3>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 210" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-label="버튼과 슬라이더를 누르면 반응하는 웹앱 화면 그림" style="width:300px; height:210px; flex:0 0 auto"><rect x="10" y="6" width="270" height="190" rx="10" fill="#fff" stroke="#1b1b1b" stroke-width="4"/><line x1="10" y1="34" x2="280" y2="34" stroke="#1b1b1b" stroke-width="4"/><circle cx="30" cy="20" r="5" fill="#c9c9c3"/><circle cx="48" cy="20" r="5" fill="#c9c9c3"/><circle cx="66" cy="20" r="5" fill="#c9c9c3"/><line x1="36" y1="78" x2="200" y2="78" stroke="#c9c9c3" stroke-width="8"/><line x1="36" y1="78" x2="140" y2="78" stroke="#1f4e8c" stroke-width="8"/><circle cx="140" cy="78" r="13" fill="#fff" stroke="#1f4e8c" stroke-width="5"/><rect x="36" y="112" width="110" height="46" rx="10" fill="#1f4e8c"/><rect x="56" y="130" width="70" height="10" rx="5" fill="#fff"/><circle cx="224" cy="96" r="34" fill="#dbe6f3"/><path d="M206 96 l12 12 l22 -24" stroke="#1f4e8c" stroke-width="8"/><path d="M150 140 L150 192 L163 179 L172 199 L181 195 L172 175 L189 175 Z" fill="#fff" stroke="#1b1b1b" stroke-width="4"/></svg>
+      </div>
+      <ul style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; line-height:1.6; color:#1b1b1b">
+        <li>누르는 대로 화면이 바뀜</li>
+        <li>학생이 직접 조작하고 결과를 봄</li>
+        <li>채점·타이머·저장도 화면이 처리</li>
+      </ul>
+    </div>
+  </div>
+  <p id="pbed381e7299fr2-c0f8e31d" style="position:absolute; top:814.23px; left:50%; width:1664px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:40px; line-height:1.5; color:#55595e; transform:translateX(-50%)"><span style="color:#1b1b1b"><b>웹앱 = 버튼이 살아 있는 웹페이지.</b></span> 주소창으로 여는 그 웹페이지랑 같은 기술이에요</p>
+  
+</section>
+<section id="webapp-file" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">개념 ① · 웹앱</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">파일 하나라서 편해요</h2>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:36px;padding:4px 0 8px"><div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:180px"><svg aria-label="HTML 파일 아이콘" width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.5000)"><path d="M14 4 H40 L52 16 V60 H14 Z" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><path d="M40 4 V16 H52" stroke="#1b1b1b" stroke-width="3"/><rect x="10" y="32" width="38" height="16" rx="3" fill="#1f4e8c"/><path d="M22 36 l-5 4 l5 4 M36 36 l5 4 l-5 4 M31 34 l-4 12" stroke="#fff" stroke-width="2.5"/></g></svg><p style="font-size:28px;font-weight:700;color:#1b1b1b;text-align:center">수업.html</p></div><x-shape kind="arrow-right" style="background:#9a9a96;width:72px;height:36px"></x-shape><div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:200px"><svg aria-label="브라우저 창 아이콘" width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.5000)"><rect x="5" y="9" width="54" height="44" rx="5" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><line x1="5" y1="20" x2="59" y2="20" stroke="#1b1b1b" stroke-width="3"/><circle cx="12" cy="14.5" r="1.8" fill="#1b1b1b"/><circle cx="18" cy="14.5" r="1.8" fill="#1b1b1b"/><rect x="16" y="29" width="32" height="12" rx="4" fill="#1f4e8c"/><path d="M40 36 L40 54 L44.5 49.5 L48 57 L51 55.5 L47.5 48.5 L53.5 48.5 Z" fill="#fff" stroke="#1b1b1b" stroke-width="2.5"/></g></svg><p style="font-size:28px;font-weight:700;color:#1b1b1b;text-align:center">크롬·엣지</p></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:200px"><svg aria-label="USB 아이콘" width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.5000)"><rect x="22" y="4" width="20" height="14" rx="2" fill="#f0f0ec" stroke="#1b1b1b" stroke-width="3"/><rect x="27" y="9" width="3" height="4" fill="#1b1b1b"/><rect x="34" y="9" width="3" height="4" fill="#1b1b1b"/><rect x="16" y="18" width="32" height="40" rx="6" fill="#1f4e8c" stroke="#1b1b1b" stroke-width="3"/><rect x="26" y="30" width="12" height="16" rx="3" fill="#dbe6f3"/></g></svg><p style="font-size:28px;font-weight:700;color:#1b1b1b;text-align:center">USB</p></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:200px"><svg aria-label="메신저로 파일을 보내는 아이콘" width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.5000)"><path d="M6 8 H58 a4 4 0 0 1 4 4 V40 a4 4 0 0 1 -4 4 H24 L12 56 V44 H6 a4 4 0 0 1 -4 -4 V12 a4 4 0 0 1 4 -4 Z" fill="#dbe6f3" stroke="#1f4e8c" stroke-width="3"/><path d="M22 14 H38 L44 20 V38 H22 Z" fill="#fff" stroke="#1b1b1b" stroke-width="2.5"/><line x1="27" y1="26" x2="39" y2="26" stroke="#c9c9c3" stroke-width="2.5"/><line x1="27" y1="32" x2="36" y2="32" stroke="#c9c9c3" stroke-width="2.5"/></g></svg><p style="font-size:28px;font-weight:700;color:#1b1b1b;text-align:center">메신저</p></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:200px"><svg aria-label="게시판 아이콘" width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.5000)"><rect x="4" y="8" width="56" height="48" rx="4" fill="#f0f0ec" stroke="#1b1b1b" stroke-width="3"/><rect x="10" y="15" width="20" height="16" fill="#fff" stroke="#1b1b1b" stroke-width="2"/><rect x="34" y="15" width="20" height="16" fill="#dbe6f3" stroke="#1b1b1b" stroke-width="2"/><rect x="10" y="35" width="20" height="15" fill="#dbe6f3" stroke="#1b1b1b" stroke-width="2"/><rect x="34" y="35" width="20" height="15" fill="#fff" stroke="#1b1b1b" stroke-width="2"/><circle cx="20" cy="15" r="3" fill="#e9a23b"/><circle cx="44" cy="15" r="3" fill="#e9a23b"/></g></svg><p style="font-size:28px;font-weight:700;color:#1b1b1b;text-align:center">게시판</p></div></div>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:16px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:480px">설치 불필요</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">파일을 더블클릭하면 크롬·엣지에서 바로 열림</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:16px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:480px">옮기기 쉬움</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">USB, 메신저, 이메일로 파일 하나만 보내면 됨</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:16px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:480px">인터넷 없이도 동작</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">대부분 그대로 동작 (영상 링크만 인터넷 필요)</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:16px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:480px">어디든 게시 가능</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">패들렛, 학급 게시판, 자료실 사이트 등</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 06</p>
+
+</section>
+<section id="part2" style="display:flex; flex-direction:column; gap:32px; justify-content:center; padding:128px 128px 160px; background:#fcfcfa">
+  <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:52px; font-weight:700; line-height:1.2; color:#1f4e8c">2부</p>
+  <h2 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:92px; font-weight:900; line-height:1.2; color:#1b1b1b">결과물 둘러보기</h2>
+  <div style="display:flex; flex-direction:column; padding:28px 0 0; border-top:3px solid #1b1b1b">
+    <ul style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; line-height:1.7; color:#1b1b1b">
+      <li>수업 슬라이드 · 수업 웹앱</li>
+      <li>자동 채점 연습 도구 · 게임형 복습</li>
+      <li>학생 작품 저장하고 함께 보기</li>
+    </ul>
+  </div>
+  <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:28px; color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 07</p>
+  
+</section>
+<section id="site" style="display:flex; flex-direction:column; gap:32px; padding:128px 128px 160px; background:#fcfcfa">
+  <div style="display:flex; flex-direction:column; gap:10px; padding:0 0 24px; border-bottom:3px solid #1b1b1b">
+    <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:30px; font-weight:500; color:#6b7076">2부 · 결과물 둘러보기</p>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:56px; align-items:start">
+    <div style="width:560px; display:flex; flex-direction:column; gap:28px">
+      <div style="display:flex; flex-direction:column; gap:6px">
+        <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; color:#55595e">교과서 단원 순서로 정리한 자료</p>
+      </div>
+      <ul style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; line-height:1.6; color:#1b1b1b">
+        <li>수업 슬라이드</li>
+        <li>수업 웹앱 · 체험 도구</li>
+        <li>도면 연습 도구 · 게임</li>
+        <li>활동지(내려받기)</li>
+      </ul>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; line-height:1.5; color:#55595e">모두 <span style="color:#1b1b1b"><b>HTML 파일 하나</b></span>라서 브라우저로 바로 열림</p>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:34px; font-weight:700; line-height:1.5; color:#1f4e8c"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/" style="color:#1f4e8c">자료실 열기 ↗</a></p>
+    </div>
+    <img src="img-53e22915.png" alt="주형T 수업자료실 첫 화면: 왼쪽 단원 목록과 대표 자료 썸네일 카드" style="width:1048px; height:590px; background:#ffffff; border:2px solid #d5d5d0; object-fit:contain">
+  </div>
+  <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:28px; color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 08</p>
+  
+</section>
+<section id="ex-slides" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">예시 ① · 수업 슬라이드</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">스킬로 등록해 명령만 하면 제작!</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="img-7157fb44.png" alt="수송 2차시 육상 수송 수단 슬라이드 표지" style="width:808px;height:456px;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:40px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/%EC%9E%90%EB%A3%8C/6_%E2%85%A5.%20%EC%97%90%EB%84%88%EC%A7%80%EC%99%80%20%EC%88%98%EC%86%A1/5_%EC%88%98%EC%86%A1%20%EC%88%98%EB%8B%A8%EA%B3%BC%20%EC%9A%B4%EC%86%A1%20%C2%B7%204%EC%B0%A8%EC%8B%9C%20%EC%88%98%EC%97%85/%EC%88%98%EC%86%A1_2%EC%B0%A8%EC%8B%9C_%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C.html" style="color:#1b1b1b">수송 2차시 · 육상 수송 수단 <span style="color:#1f4e8c">↗</span></a></h3>
+<p style="font-size:34px;color:#55595e">48장 · 사진 33장 · 엔진 실험실로 바로 연결</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="img-66d8e093.png" alt="친환경 에너지 1차시 태양 에너지 슬라이드 표지" style="width:808px;height:456px;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:40px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/%EC%9E%90%EB%A3%8C/6_%E2%85%A5.%20%EC%97%90%EB%84%88%EC%A7%80%EC%99%80%20%EC%88%98%EC%86%A1/1_%EC%B9%9C%ED%99%98%EA%B2%BD%20%EC%97%90%EB%84%88%EC%A7%80%20%EC%9E%90%EC%9B%90%20%C2%B7%20%EC%88%98%EC%97%85%20%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C/slide_lesson1.html" style="color:#1b1b1b">에너지 1차시 · 태양광과 태양열 <span style="color:#1f4e8c">↗</span></a></h3>
+<p style="font-size:34px;color:#55595e">교과서 단원·쪽수 표시 · 수업 도구 버튼</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 09</p>
+
+</section>
+<section id="ex-apps" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">예시 ② · 체험형 수업 웹앱</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">학생이 직접 눌러 보는 웹앱</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="img-9ce898cb.png" alt="엔진 실험실: 자동차를 몰아 보며 속도와 회전수를 보는 화면" style="width:808px;height:456px;object-fit:cover;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:40px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/%EC%9E%90%EB%A3%8C/6_%E2%85%A5.%20%EC%97%90%EB%84%88%EC%A7%80%EC%99%80%20%EC%88%98%EC%86%A1/5_%EC%88%98%EC%86%A1%20%EC%88%98%EB%8B%A8%EA%B3%BC%20%EC%9A%B4%EC%86%A1%20%C2%B7%204%EC%B0%A8%EC%8B%9C%20%EC%88%98%EC%97%85/%EC%97%94%EC%A7%84_%EC%B2%B4%ED%97%98%EC%8B%A4.html" style="color:#1b1b1b">엔진 실험실 <span style="color:#1f4e8c">↗</span></a></h3>
+<p style="font-size:34px;color:#55595e">가속·브레이크, 엔진 소리, 기어, 엔진 속 보기</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="img-cd5c0bbc.png" alt="수송 타임머신 시작 화면: 바다 위 돛단배와 열기구" style="width:808px;height:456px;object-fit:cover;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:40px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/%EC%9E%90%EB%A3%8C/6_%E2%85%A5.%20%EC%97%90%EB%84%88%EC%A7%80%EC%99%80%20%EC%88%98%EC%86%A1/5_%EC%88%98%EC%86%A1%20%EC%88%98%EB%8B%A8%EA%B3%BC%20%EC%9A%B4%EC%86%A1%20%C2%B7%204%EC%B0%A8%EC%8B%9C%20%EC%88%98%EC%97%85/%EC%88%98%EC%86%A1_%ED%83%80%EC%9E%84%EB%A8%B8%EC%8B%A0.html" style="color:#1b1b1b">수송 타임머신 <span style="color:#1f4e8c">↗</span></a></h3>
+<p style="font-size:34px;color:#55595e">뗏목부터 로켓까지 직접 움직이며 동력 비교</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 10</p>
+
+</section>
+<section id="ex-tools" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">예시 ③ · 연습 도구</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">그리면 바로 채점해 줘요</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="img-b1fdc99a.png" alt="숨은선 마스터: 3D 모형과 평면도·정면도·우측면도 그리기 칸" style="width:808px;height:456px;object-fit:cover;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:40px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/%EC%9E%90%EB%A3%8C/5_%E2%85%A4.%20%EC%9E%AC%EB%A3%8C%EC%99%80%20%EC%A0%9C%EC%A1%B0/3_%EC%A0%9C%ED%92%88%EC%9D%98%20%EC%84%A4%EA%B3%84%EC%99%80%20%EC%A0%9C%EC%9E%91%20%C2%B7%20%EC%97%B0%EC%8A%B5%20%EB%8F%84%EA%B5%AC/%EC%88%A8%EC%9D%80%EC%84%A0_%EB%A7%88%EC%8A%A4%ED%84%B0_%EB%B3%B4%EB%8A%94%EB%B0%A9%ED%96%A5.html" style="color:#1b1b1b">숨은선 마스터 <span style="color:#1f4e8c">↗</span></a></h3>
+<p style="font-size:34px;color:#55595e">3D를 돌려 보고 세 도면을 그리면 초록불</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="img-f547bcc4.png" alt="정투상도 마스터 클래스: 등각투상도 블록과 투상도 비교 메뉴" style="width:808px;height:456px;object-fit:cover;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:40px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/%EC%9E%90%EB%A3%8C/5_%E2%85%A4.%20%EC%9E%AC%EB%A3%8C%EC%99%80%20%EC%A0%9C%EC%A1%B0/3_%EC%A0%9C%ED%92%88%EC%9D%98%20%EC%84%A4%EA%B3%84%EC%99%80%20%EC%A0%9C%EC%9E%91%20%C2%B7%20%EC%97%B0%EC%8A%B5%20%EB%8F%84%EA%B5%AC/%EC%A0%95%ED%88%AC%EC%83%81%EB%8F%84_%EC%8A%A4%EC%BA%90%EB%84%88.html" style="color:#1b1b1b">정투상도 마스터 클래스 <span style="color:#1f4e8c">↗</span></a></h3>
+<p style="font-size:34px;color:#55595e">도면 보고 블록 쌓기 · 단계별 보스 문제</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 11</p>
+
+</section>
+<section id="ex-games" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">예시 ④ · 게임형 복습</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">복습은 게임으로</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="img-fce2e966.png" alt="수송 경주 시작 화면: 바다 배경 위에 이름 입력과 들어가기 버튼" style="width:808px;height:456px;object-fit:cover;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:40px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/%EC%9E%90%EB%A3%8C/6_%E2%85%A5.%20%EC%97%90%EB%84%88%EC%A7%80%EC%99%80%20%EC%88%98%EC%86%A1/5_%EC%88%98%EC%86%A1%20%EC%88%98%EB%8B%A8%EA%B3%BC%20%EC%9A%B4%EC%86%A1%20%C2%B7%204%EC%B0%A8%EC%8B%9C%20%EC%88%98%EC%97%85/%EC%88%98%EC%86%A1_%EA%B2%BD%EC%A3%BC.html" style="color:#1b1b1b">수송 경주 · 수송 수단 <span style="color:#1f4e8c">↗</span></a></h3>
+<p style="font-size:34px;color:#55595e">반 전체(최대 35명)가 함께 들어와 경주</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="img-27adac91.png" alt="에너지 크로니클 시작 화면" style="width:808px;height:456px;object-fit:cover;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:40px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://newe-smoky.vercel.app/" style="color:#1b1b1b">에너지 크로니클 · 신재생 에너지 <span style="color:#1f4e8c">↗</span></a></h3>
+<p style="font-size:34px;color:#55595e">발전 사당을 깨우는 3D 탐험 · 1~4차시 복습</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 12</p>
+
+</section>
+<section id="ex-save" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">예시 ⑤ · 저장하고 공유하기</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">저장도 되고, 친구 작품도 보여요</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:56px;align-items:start">
+<img src="img-adbc9d82.png" alt="카프라 제품 설계실: 3D 정리대 모형과 부품표" style="width:960px;height:590px;object-fit:cover;border:2px solid #d5d5d0">
+<div style="display:flex;flex-direction:column;gap:24px;width:648px">
+<h3 style="font-size:44px;font-weight:700;color:#1b1b1b"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/%EC%9E%90%EB%A3%8C/5_%E2%85%A4.%20%EC%9E%AC%EB%A3%8C%EC%99%80%20%EC%A0%9C%EC%A1%B0/2_%EC%A0%9C%ED%92%88%EC%9D%98%20%EC%84%A4%EA%B3%84%EC%99%80%20%EC%A0%9C%EC%9E%91%20%C2%B7%201~5%EC%B0%A8%EC%8B%9C%20%EC%88%98%EC%97%85/5%EC%B0%A8%EC%8B%9C_%EC%B9%B4%ED%94%84%EB%9D%BC_%EC%A0%9C%ED%92%88%EC%84%A4%EA%B3%84%EC%8B%A4.html" style="color:#1b1b1b">카프라 제품 설계실 <span style="color:#1f4e8c">↗</span></a></h3>
+<div style="display:flex;flex-direction:column">
+<p style="font-size:36px;line-height:1.5;padding:16px 4px;border-top:1px solid #d5d5d0"><b style="color:#1f4e8c">1</b>&#160; 반·이름·비밀번호로 입장</p>
+<p style="font-size:36px;line-height:1.5;padding:16px 4px;border-top:1px solid #d5d5d0"><b style="color:#1f4e8c">2</b>&#160; 카프라를 놓을 때마다 자동 저장</p>
+<p style="font-size:36px;line-height:1.5;padding:16px 4px;border-top:1px solid #d5d5d0;border-bottom:1px solid #d5d5d0"><b style="color:#1f4e8c">3</b>&#160; 같은 반 친구 작품을 3D로 보기</p>
+</div>
+<p style="font-size:34px;line-height:1.5;color:#55595e">저장은 무료 서버(Supabase) 사용.<br>다른 컴퓨터에서도 이어서 작업 가능.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 13</p>
+
+</section>
+<section id="part3" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px;justify-content:center">
+<p style="font-size:52px;font-weight:700;line-height:1.2;color:#1f4e8c">3부</p>
+<h2 style="font-size:92px;font-weight:900;line-height:1.2;color:#1b1b1b">아티팩트와 스킬</h2>
+<p style="width:1500px;font-size:42px;line-height:1.5;color:#55595e">오늘 제일 중요한 부분이에요</p>
+<div style="display:flex;flex-direction:column;padding:28px 0 0;border-top:3px solid #1b1b1b">
+<ul style="font-size:38px;line-height:1.7;color:#1b1b1b">
+<li>아티팩트: 대화 옆 결과물, 링크로 공유</li>
+<li>스킬: 개념과 등록 방법</li>
+<li>내가 쓰는 스킬 두 가지</li>
+</ul>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 14</p>
+
+</section>
+<section id="artifact-what" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 개념 ② 아티팩트</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">말하면 옆 창에 바로 떠요</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px;width:820px;padding:28px;border:2px solid #d5d5d0">
+<p style="font-size:30px;font-weight:700;color:#6b7076">대화 창</p>
+<p style="font-size:34px;line-height:1.45;background:#f0f0ec;border-radius:8px;padding:18px 26px;width:680px;align-self:end">엔진 원리를 직접 해 보는 웹앱 만들어 줘</p>
+<p style="font-size:34px;line-height:1.45;border:1px solid #d5d5d0;border-radius:8px;padding:18px 26px;width:680px">만들었어요. 오른쪽 창에서 열어 보세요.</p>
+<p style="font-size:34px;line-height:1.45;background:#f0f0ec;border-radius:8px;padding:18px 26px;width:680px;align-self:end">가속 버튼을 더 크게 해 줘</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;padding:24px;border:2px solid #d5d5d0">
+<p style="font-size:30px;font-weight:700;color:#1f4e8c">아티팩트 창 · 엔진 실험실</p>
+<img src="img-9ce898cb.png" alt="아티팩트 창에 열린 엔진 실험실 웹앱" style="width:760px;height:400px;object-fit:cover">
+</div>
+</div>
+<p style="font-size:38px;line-height:1.5;color:#55595e">고쳐 달라고 하면 <b style="color:#1b1b1b">같은 링크가 바로 바뀌고</b>, 공유하면 <b style="color:#1b1b1b">누구나 링크로</b> 열어요</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 15</p>
+
+</section>
+<section id="artifact-share" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 개념 ② 아티팩트</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">만들면 링크(URL)가 생겨요, 그대로 공유!</h2>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:18px 20px 18px 32px;border:2px solid #1b1b1b">
+<p style="flex:1;font-size:40px;font-weight:500;color:#1b1b1b">claude.ai/artifact/…</p>
+<p style="font-size:34px;font-weight:700;color:#ffffff;background:#1f4e8c;border-radius:6px;padding:10px 28px">링크 복사</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<p style="font-size:44px;font-weight:700;line-height:1.2;color:#1f4e8c">1</p>
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">공유 켜기</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">화면의 공유 메뉴에서 볼 사람 정하기</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<p style="font-size:44px;font-weight:700;line-height:1.2;color:#1f4e8c">2</p>
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">링크 보내기</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">클래스룸·메신저에 붙이거나 QR로 띄우기</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<p style="font-size:44px;font-weight:700;line-height:1.2;color:#1f4e8c">3</p>
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">고치면 그대로 반영</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">같은 링크라 다시 보낼 필요 없음</p>
+</div>
+</div>
+<p style="font-size:36px;line-height:1.5;color:#55595e">처음엔 <b style="color:#1b1b1b">나만 보기</b>예요. 공유를 켜야 다른 사람이 열 수 있어요</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 16</p>
+
+</section>
+<section id="artifact-vs-file" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 개념 ② 아티팩트</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">링크로 줄까, 파일로 줄까?</h2>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center"><div style="width:20%"></div><div style="width:40%;padding:0 12px"><svg aria-label="링크 아이콘" width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.1250)"><rect x="6" y="22" width="30" height="20" rx="10" stroke="#1b1b1b" stroke-width="3" stroke="#1f4e8c" stroke-width="5"/><rect x="28" y="22" width="30" height="20" rx="10" stroke="#1b1b1b" stroke-width="5"/></g></svg></div><div style="width:40%;padding:0 12px"><svg aria-label="HTML 파일 아이콘" width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.1250)"><path d="M14 4 H40 L52 16 V60 H14 Z" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><path d="M40 4 V16 H52" stroke="#1b1b1b" stroke-width="3"/><rect x="10" y="32" width="38" height="16" rx="3" fill="#1f4e8c"/><path d="M22 36 l-5 4 l5 4 M36 36 l5 4 l-5 4 M31 34 l-4 12" stroke="#fff" stroke-width="2.5"/></g></svg></div></div>
+<table style="width:1664px;border-collapse:collapse;font-size:40px;line-height:1.4;color:#1b1b1b">
+<tr>
+<th style="width:20%;padding:14px 12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:32px;font-weight:700;color:#55595e">구분</th>
+<th style="width:40%;padding:14px 12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:32px;font-weight:700;color:#55595e">아티팩트 링크</th>
+<th style="width:40%;padding:14px 12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:32px;font-weight:700;color:#55595e">HTML 파일</th>
+</tr>
+<tr>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">여는 법</td>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0">링크 클릭 (인터넷 필요)</td>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0">파일 더블클릭</td>
+</tr>
+<tr>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">고치기</td>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0">대화로 말하면 바로</td>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0">고친 파일을 다시 받기</td>
+</tr>
+<tr>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">공유</td>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0">공유 메뉴에서 링크 열기</td>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0">USB·메신저·패들렛</td>
+</tr>
+<tr>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">이럴 때</td>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0">만들고 다듬는 동안</td>
+<td style="padding:14px 12px;border-bottom:1px solid #d5d5d0">교실 PC에서 수업할 때</td>
+</tr>
+</table>
+<p style="font-size:40px;line-height:1.5;color:#1b1b1b"><b>제 방법:</b> 아티팩트로 다듬고 → 완성되면 HTML 파일로 받아 자료실에 올려요</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 17</p>
+
+</section>
+<section id="skill-what" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px;justify-content:center">
+<p style="font-size:36px;font-weight:700;color:#1f4e8c">3부 · 내가 쓰는 스킬</p>
+<h2 style="font-size:88px;font-weight:900;line-height:1.25;color:#1b1b1b;width:1040px">스킬 = 내 수업 방식을<br>적어 둔 작업 설명서</h2>
+<p style="font-size:44px;line-height:1.5;color:#55595e;width:900px;padding:32px 0 0;border-top:3px solid #1b1b1b">한 번 적어 두면<br>매번 설명 안 해도 돼요</p>
+<div style="position:absolute;left:1120px;top:236px;width:400px;display:flex;flex-direction:column;gap:14px;padding:28px 28px 32px;background:#ffffff;border:4px solid #1b1b1b;border-radius:10px"><p style="font-size:30px;font-weight:700;color:#ffffff;background:#1f4e8c;padding:6px 18px;border-radius:6px;align-self:flex-start">SKILL.md</p><div style="display:flex;flex-direction:row;align-items:center;gap:12px"><svg aria-label="체크 표시" width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(0.5625)"><circle cx="32" cy="32" r="28" fill="#dbe6f3"/><path d="M19 33 l9 9 l17 -19" stroke="#1f4e8c" stroke-width="6"/></g></svg><p style="font-size:28px;line-height:1.35;color:#1b1b1b">모둠 활동 넣지 않기</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:12px"><svg aria-label="체크 표시" width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(0.5625)"><circle cx="32" cy="32" r="28" fill="#dbe6f3"/><path d="M19 33 l9 9 l17 -19" stroke="#1f4e8c" stroke-width="6"/></g></svg><p style="font-size:28px;line-height:1.35;color:#1b1b1b">퀴즈는 2~3장마다</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:12px"><svg aria-label="체크 표시" width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(0.5625)"><circle cx="32" cy="32" r="28" fill="#dbe6f3"/><path d="M19 33 l9 9 l17 -19" stroke="#1f4e8c" stroke-width="6"/></g></svg><p style="font-size:28px;line-height:1.35;color:#1b1b1b">글씨는 교실 뒤 기준</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:12px"><svg aria-label="체크 표시" width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(0.5625)"><circle cx="32" cy="32" r="28" fill="#dbe6f3"/><path d="M19 33 l9 9 l17 -19" stroke="#1f4e8c" stroke-width="6"/></g></svg><p style="font-size:28px;line-height:1.35;color:#1b1b1b">교과서 그림 넣기</p></div></div>
+<x-shape kind="arrow-right" style="position:absolute;left:1540px;top:440px;background:#9a9a96;width:64px;height:32px"></x-shape>
+<div style="position:absolute;left:1620px;top:236px;width:172px;display:flex;flex-direction:column;gap:18px;align-items:center"><svg aria-label="같은 모양의 결과물 화면" width="172" height="112" viewBox="0 0 172 112" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(0.8600)"><rect x="3" y="3" width="194" height="124" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="4"/><rect x="18" y="18" width="90" height="14" rx="4" fill="#1f4e8c"/><rect x="18" y="46" width="150" height="10" rx="4" fill="#c9c9c3"/><rect x="18" y="66" width="120" height="10" rx="4" fill="#c9c9c3"/><rect x="18" y="92" width="60" height="22" rx="6" fill="#dbe6f3"/><circle cx="170" cy="100" r="16" fill="#dbe6f3"/><path d="M162 100 l6 6 l10 -12" stroke="#1f4e8c" stroke-width="4"/></g></svg><svg aria-label="같은 모양의 결과물 화면" width="172" height="112" viewBox="0 0 172 112" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(0.8600)"><rect x="3" y="3" width="194" height="124" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="4"/><rect x="18" y="18" width="90" height="14" rx="4" fill="#1f4e8c"/><rect x="18" y="46" width="150" height="10" rx="4" fill="#c9c9c3"/><rect x="18" y="66" width="120" height="10" rx="4" fill="#c9c9c3"/><rect x="18" y="92" width="60" height="22" rx="6" fill="#dbe6f3"/><circle cx="170" cy="100" r="16" fill="#dbe6f3"/><path d="M162 100 l6 6 l10 -12" stroke="#1f4e8c" stroke-width="4"/></g></svg><svg aria-label="같은 모양의 결과물 화면" width="172" height="112" viewBox="0 0 172 112" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(0.8600)"><rect x="3" y="3" width="194" height="124" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="4"/><rect x="18" y="18" width="90" height="14" rx="4" fill="#1f4e8c"/><rect x="18" y="46" width="150" height="10" rx="4" fill="#c9c9c3"/><rect x="18" y="66" width="120" height="10" rx="4" fill="#c9c9c3"/><rect x="18" y="92" width="60" height="22" rx="6" fill="#dbe6f3"/><circle cx="170" cy="100" r="16" fill="#dbe6f3"/><path d="M162 100 l6 6 l10 -12" stroke="#1f4e8c" stroke-width="4"/></g></svg><p style="font-size:26px;font-weight:700;color:#1f4e8c">매번 같은 방식</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 18</p>
+
+</section>
+<section id="skill-how" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 내가 쓰는 스킬</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">스킬은 이렇게 돌아가요</h2>
+</div>
+<div style="display:flex;flex-direction:row;align-items:flex-start;gap:20px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b"><svg aria-label="요청 말풍선 아이콘" width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.3750)"><path d="M6 12 H50 a5 5 0 0 1 5 5 V38 a5 5 0 0 1 -5 5 H24 L13 52 V43 H11 a5 5 0 0 1 -5 -5 V17 a5 5 0 0 1 5 -5 Z" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><line x1="15" y1="23" x2="46" y2="23" stroke="#1f4e8c" stroke-width="3.5"/><line x1="15" y1="32" x2="36" y2="32" stroke="#1f4e8c" stroke-width="3.5"/></g></svg>
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">① 요청</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">“교과서 6단원 2차시로 수업 슬라이드 만들어 줘”</p>
+</div>
+<x-shape kind="arrow-right" style="background:#9a9a96;width:48px;height:28px;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b"><svg aria-label="설명서를 찾아 읽는 아이콘" width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.3750)"><path d="M6 12 H24 a6 6 0 0 1 6 6 V54 a5 5 0 0 0 -5 -5 H6 Z" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><path d="M54 12 H36 a6 6 0 0 0 -6 6 V54 a5 5 0 0 1 5 -5 H54 Z" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><circle cx="44" cy="36" r="10" fill="#dbe6f3" stroke="#1f4e8c" stroke-width="4"/><line x1="51" y1="43" x2="59" y2="51" stroke="#1f4e8c" stroke-width="5"/></g></svg>
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">② 스킬 찾기</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">요청에 맞는 스킬을 골라 설명서를 먼저 읽음</p>
+</div>
+<x-shape kind="arrow-right" style="background:#9a9a96;width:48px;height:28px;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b"><svg aria-label="규칙대로 만드는 톱니바퀴 아이콘" width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.3750)"><rect x="21" y="2" width="8" height="10" rx="2" fill="#1f4e8c" transform="rotate(0 25 25)"/><rect x="21" y="2" width="8" height="10" rx="2" fill="#1f4e8c" transform="rotate(45 25 25)"/><rect x="21" y="2" width="8" height="10" rx="2" fill="#1f4e8c" transform="rotate(90 25 25)"/><rect x="21" y="2" width="8" height="10" rx="2" fill="#1f4e8c" transform="rotate(135 25 25)"/><rect x="21" y="2" width="8" height="10" rx="2" fill="#1f4e8c" transform="rotate(180 25 25)"/><rect x="21" y="2" width="8" height="10" rx="2" fill="#1f4e8c" transform="rotate(225 25 25)"/><rect x="21" y="2" width="8" height="10" rx="2" fill="#1f4e8c" transform="rotate(270 25 25)"/><rect x="21" y="2" width="8" height="10" rx="2" fill="#1f4e8c" transform="rotate(315 25 25)"/><circle cx="25" cy="25" r="15" fill="#1f4e8c"/><circle cx="25" cy="25" r="6" fill="#fff"/><rect x="34" y="34" width="26" height="26" rx="3" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><path d="M39 47 l4 4 l9 -10" stroke="#1f4e8c" stroke-width="3.5"/></g></svg>
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">③ 규칙대로 제작</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">글꼴·색·시간 배분·퀴즈 방식까지 적힌 대로</p>
+</div>
+<x-shape kind="arrow-right" style="background:#9a9a96;width:48px;height:28px;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b"><svg aria-label="완성된 슬라이드 아이콘" width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.3750)"><rect x="14" y="6" width="44" height="32" rx="3" fill="#dbe6f3" stroke="#1b1b1b" stroke-width="2.5"/><rect x="6" y="20" width="44" height="34" rx="3" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><rect x="12" y="27" width="20" height="5" rx="2" fill="#1f4e8c"/><rect x="12" y="36" width="30" height="4" rx="2" fill="#c9c9c3"/><rect x="12" y="44" width="24" height="4" rx="2" fill="#c9c9c3"/></g></svg>
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">④ 결과물</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">바로 수업에 쓸 슬라이드·웹앱</p>
+</div>
+</div>
+<p style="font-size:38px;line-height:1.5;color:#55595e">스킬 파일은 <b style="color:#1b1b1b">이름 · 언제 쓰는지 · 지킬 규칙</b>을 적은 문서 한 장이에요</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 19</p>
+
+</section>
+<section id="skill-file" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 개념 ③ 스킬</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">스킬 파일, 열어 보면 이게 다예요</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:6px;width:900px;background:#f0f0ec;border:1px solid #d5d5d0;padding:36px 44px">
+<p style="font-size:34px;color:#6b7076">---</p>
+<p style="font-size:34px;color:#1b1b1b"><span style="color:#1f4e8c;font-weight:700">name:</span> 우리반-퀴즈슬라이드</p>
+<p style="font-size:34px;color:#1b1b1b;line-height:1.5"><span style="color:#1f4e8c;font-weight:700">description:</span> 수업 슬라이드를 만들 때 사용. 퀴즈는 점수 없이 손 들기로.</p>
+<p style="font-size:34px;color:#6b7076">---</p>
+<p style="font-size:34px;font-weight:700;color:#1b1b1b">꼭 지킬 것</p>
+<p style="font-size:34px;color:#1b1b1b">- 모둠 활동은 넣지 않는다</p>
+<p style="font-size:34px;color:#1b1b1b">- 퀴즈는 2~3장마다, 생활 속 소재로</p>
+<p style="font-size:34px;color:#1b1b1b">- 글자는 교실 뒤에서도 보이게</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:column;gap:8px;padding:22px 4px;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;color:#1f4e8c">name</h3>
+<p style="font-size:34px;line-height:1.45;color:#55595e">스킬 이름</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:22px 4px;border-top:1px solid #d5d5d0">
+<h3 style="font-size:40px;font-weight:700;color:#1f4e8c">description</h3>
+<p style="font-size:34px;line-height:1.45;color:#55595e">언제 쓰는지. AI가 이 내용을 보고 스킬을 고름</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:22px 4px;border-top:1px solid #d5d5d0">
+<h3 style="font-size:40px;font-weight:700;color:#1f4e8c">본문</h3>
+<p style="font-size:34px;line-height:1.45;color:#55595e">내 규칙. 평소 말투로 자유롭게 작성</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 20</p>
+
+</section>
+<section id="skill-register" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 개념 ③ 스킬</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">등록은 4단계면 끝</h2>
+</div>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:26px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">1</p>
+<svg aria-label="메모장 아이콘" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.0000)"><rect x="12" y="8" width="40" height="50" rx="4" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><circle cx="22" cy="8" r="3" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><circle cx="32" cy="8" r="3" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><circle cx="42" cy="8" r="3" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><line x1="19" y1="22" x2="45" y2="22" stroke="#c9c9c3" stroke-width="3"/><line x1="19" y1="31" x2="45" y2="31" stroke="#c9c9c3" stroke-width="3"/><line x1="19" y1="40" x2="36" y2="40" stroke="#c9c9c3" stroke-width="3"/><path d="M36 52 L52 36 L57 41 L41 57 L35 58 Z" fill="#e9a23b" stroke="#1b1b1b" stroke-width="2.5"/></g></svg>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:340px">내 규칙 적기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">꼭 하는 것·절대 안 하는 것 3~10줄을 메모장에 작성</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:26px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">2</p>
+<svg aria-label="대화가 파일이 되는 아이콘" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.0000)"><path d="M4 10 H32 a4 4 0 0 1 4 4 V30 a4 4 0 0 1 -4 4 H16 L9 40 V34 H8 a4 4 0 0 1 -4 -4 V14 a4 4 0 0 1 4 -4 Z" fill="#dbe6f3" stroke="#1f4e8c" stroke-width="3"/><line x1="11" y1="19" x2="29" y2="19" stroke="#1f4e8c" stroke-width="3"/><line x1="11" y1="26" x2="23" y2="26" stroke="#1f4e8c" stroke-width="3"/><path d="M36 26 H54 L60 32 V60 H36 Z" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><line x1="41" y1="38" x2="55" y2="38" stroke="#c9c9c3" stroke-width="3"/><line x1="41" y1="46" x2="52" y2="46" stroke="#c9c9c3" stroke-width="3"/><line x1="41" y1="54" x2="55" y2="54" stroke="#c9c9c3" stroke-width="3"/></g></svg>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:340px">스킬로 만들기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">“이 규칙을 스킬로 만들어 줘” → 스킬 파일 받기</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:26px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">3</p>
+<svg aria-label="업로드 아이콘" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.0000)"><path d="M18 46 H14 a10 10 0 0 1 0 -20 a14 14 0 0 1 27 -5 a11 11 0 0 1 9 25 H46" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><path d="M32 58 V32" stroke="#1f4e8c" stroke-width="4"/><path d="M23 40 L32 31 L41 40" stroke="#1f4e8c" stroke-width="4"/></g></svg>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:340px">등록하기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">Claude → Customize(사용자 지정) → Skills에서 ZIP 올리기</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:26px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">4</p>
+<svg aria-label="켜기 스위치 아이콘" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.0000)"><rect x="4" y="18" width="56" height="28" rx="14" fill="#1f4e8c"/><circle cx="46" cy="32" r="10" fill="#fff"/><path d="M12 32 l4 4 l8 -9" stroke="#fff" stroke-width="3.5"/></g></svg>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:340px">켜 두고 쓰기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">관련 요청을 하면 자동으로 적용</p>
+</div>
+</div>
+<p style="font-size:32px;color:#6b7076">메뉴 이름과 위치는 Claude 업데이트·요금제에 따라 조금 다를 수 있음</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 21</p>
+
+</section>
+<section id="ls-rules" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">스킬 ① · 수업 슬라이드 (lesson-slides)</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">제 스킬에 적어 둔 규칙들</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">모둠·짝 활동 없음</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">학생 참여는 퀴즈와 손 들기로</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">점수 규칙 없음</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">팔로 O/X, 손가락 번호, 함께 외치기</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">생활 속 퀴즈 소재</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">요구르트, 스마트폰, 반려견처럼 친근한 것</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">교과서 그림 넣기</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">중간중간 넣고 그림 번호·쪽수 표시</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">2~3장마다 퀴즈</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">설명 장이 3장 넘게 이어지지 않게</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">지어내지 않기</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">통계·인용은 만들지 않고, 틀린 교과서 내용은 노트에</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 22</p>
+
+</section>
+<section id="ls-flow" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">스킬 ① · 수업 슬라이드 (lesson-slides)</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">45분 흐름도 미리 정해 뒀어요</h2>
+</div>
+<table style="width:1664px;border-collapse:collapse;font-size:38px;line-height:1.4;color:#1b1b1b">
+<tr>
+<th style="width:18%;padding:14px 12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:32px;font-weight:700;color:#55595e">구간</th>
+<th style="width:64%;padding:14px 12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:32px;font-weight:700;color:#55595e">들어가는 장</th>
+<th style="width:18%;padding:14px 12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:32px;font-weight:700;color:#55595e">시간</th>
+</tr>
+<tr>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">도입</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">표지 · 학습 목표 · 복습 퀴즈 · 생각 열기</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">5~6분</td>
+</tr>
+<tr>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">전개 1</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">개념 설명(교과서 그림) + 확인 퀴즈</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">12~15분</td>
+</tr>
+<tr>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">전개 2</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">단계별로 바뀌는 원리 장면 + 퀴즈</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">10~13분</td>
+</tr>
+<tr>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">전개 3</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">비교표 · 읽을거리 · 상황 퀴즈 · 영상</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">7~11분</td>
+</tr>
+<tr>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0;font-weight:700">정리</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">적용 퀴즈 · 3줄 요약 · 다음 시간 예고</td>
+<td style="padding:13px 12px;border-bottom:1px solid #d5d5d0">5~6분</td>
+</tr>
+</table>
+<p style="font-size:36px;line-height:1.5;color:#55595e">16~20장 · 퀴즈 5~6개 · 시간 배분은 발표자 노트에</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 23</p>
+
+</section>
+<section id="app-core" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">스킬 ② · 수업 웹앱</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">수업 웹앱은 이 순서로 만들게 했어요</h2>
+</div>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:22px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">1</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">자료 먼저 읽기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">질문하기 전에 교과서·대본·평가 계획부터 읽기</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:22px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">2</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">질문은 최대 3개</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">이번 차시 범위 · 활동 수준 · 빔인지 학생 기기인지</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:22px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">3</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">45분 시간표부터</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">설명은 5~10분, 나머지는 활동 · 10~14화면</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:22px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">4</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">영상은 있는지 확인</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">실제 영상인지 확인하고 새 탭 링크로, 3개 이하</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:22px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">5</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">직접 열어서 검증</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">오류 0건, 버튼·채점 동작, 교실 뒤에서 읽히는 글씨</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 24</p>
+
+</section>
+<section id="app-principles" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:30px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">스킬 ② · 수업 웹앱</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">수업 원칙도 같이 적어 뒀어요</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">예시는 아이들이 만져 본 것</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">우산, 책가방, 케첩통, 급식실 줄처럼 매일 겪는 것</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">답은 숨기고 개수만</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">“+3” 배지만 보여 주면 “하나 더” 하며 계속 생각함</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">글씨는 교실 뒤 기준</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">맨 뒷자리에서 읽히는지로 크기 결정</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">타이핑 병목 만들지 않기</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">화면은 타이머·집계만, 아이디어는 종이와 말로</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:20px 32px;border:2px solid #1b1b1b">
+<p style="font-size:34px;font-weight:700;color:#1f4e8c;white-space:nowrap">스킬 받기</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:2px"><p style="font-size:34px;line-height:1.4;color:#1b1b1b">오늘 본 두 스킬은 <b>자료실 사이트 하단</b>에 올려 둠</p><p style="font-size:34px;line-height:1.4;font-weight:700;color:#1f4e8c"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/" style="color:#1f4e8c">leejuhyung-lessons.vercel.app</a></p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 25</p>
+
+</section>
+<section id="skill-popular" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 다른 사람이 만든 스킬</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">깃허브에서 인기 많은 스킬 5개</h2>
+</div>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:38px;font-weight:700;color:#1f4e8c;width:40px">1</p>
+<div style="display:flex;flex-direction:column;gap:2px;width:640px"><p style="font-size:34px;font-weight:700;line-height:1.3;color:#1b1b1b">skills</p><p style="font-size:26px;line-height:1.3;color:#6b7076">github.com/mattpocock/skills</p></div>
+<p style="font-size:32px;line-height:1.4;color:#55595e;flex:1">계획을 말하면 AI가 질문을 던져 빈틈을 찾아 줌</p>
+<p style="font-size:32px;font-weight:700;color:#1b1b1b;width:150px;text-align:right">★ 32.9만</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:38px;font-weight:700;color:#1f4e8c;width:40px">2</p>
+<div style="display:flex;flex-direction:column;gap:2px;width:640px"><p style="font-size:34px;font-weight:700;line-height:1.3;color:#1b1b1b">superpowers</p><p style="font-size:26px;line-height:1.3;color:#6b7076">github.com/obra/superpowers</p></div>
+<p style="font-size:32px;line-height:1.4;color:#55595e;flex:1">브레인스토밍 → 계획 → 테스트 순서로 일하게 함</p>
+<p style="font-size:32px;font-weight:700;color:#1b1b1b;width:150px;text-align:right">★ 32.1만</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:38px;font-weight:700;color:#1f4e8c;width:40px">3</p>
+<div style="display:flex;flex-direction:column;gap:2px;width:640px"><p style="font-size:34px;font-weight:700;line-height:1.3;color:#1b1b1b">skills</p><p style="font-size:26px;line-height:1.3;color:#6b7076">github.com/anthropics/skills</p></div>
+<p style="font-size:32px;line-height:1.4;color:#55595e;flex:1">Anthropic 공식 예시. 워드·엑셀·PPT·PDF 스킬</p>
+<p style="font-size:32px;font-weight:700;color:#1b1b1b;width:150px;text-align:right">★ 19.8만</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:38px;font-weight:700;color:#1f4e8c;width:40px">4</p>
+<div style="display:flex;flex-direction:column;gap:2px;width:640px"><p style="font-size:34px;font-weight:700;line-height:1.3;color:#1b1b1b">ui-ux-pro-max-skill</p><p style="font-size:26px;line-height:1.3;color:#6b7076">github.com/nextlevelbuilder/ui-ux-pro-max-skill</p></div>
+<p style="font-size:32px;line-height:1.4;color:#55595e;flex:1">색·글꼴·배치를 골라 웹앱 화면을 깔끔하게</p>
+<p style="font-size:32px;font-weight:700;color:#1b1b1b;width:150px;text-align:right">★ 15.2만</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:38px;font-weight:700;color:#1f4e8c;width:40px">5</p>
+<div style="display:flex;flex-direction:column;gap:2px;width:640px"><p style="font-size:34px;font-weight:700;line-height:1.3;color:#1b1b1b">awesome-claude-skills</p><p style="font-size:26px;line-height:1.3;color:#6b7076">github.com/ComposioHQ/awesome-claude-skills</p></div>
+<p style="font-size:32px;line-height:1.4;color:#55595e;flex:1">분야별 스킬 링크 모음집</p>
+<p style="font-size:32px;font-weight:700;color:#1b1b1b;width:150px;text-align:right">★ 7.9만</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.5;color:#6b7076">★ 별(스타) 수는 2026년 11월 기준 · 1·2번은 개발자용 · 남이 만든 스킬은 내용을 읽어 보고 등록하기</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 26</p>
+
+</section>
+<section id="skill-install" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 다른 사람이 만든 스킬</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">남이 만든 스킬, Claude 앱에 올리는 법</h2>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:28px;padding:16px 32px;background:#dbe6f3;border-radius:10px"><svg aria-label="Claude에게 부탁하는 말풍선 아이콘" width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.1250)"><path d="M6 12 H50 a5 5 0 0 1 5 5 V38 a5 5 0 0 1 -5 5 H24 L13 52 V43 H11 a5 5 0 0 1 -5 -5 V17 a5 5 0 0 1 5 -5 Z" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><line x1="15" y1="23" x2="46" y2="23" stroke="#1f4e8c" stroke-width="3.5"/><line x1="15" y1="32" x2="36" y2="32" stroke="#1f4e8c" stroke-width="3.5"/></g></svg><div style="flex:1;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:700;color:#1f4e8c">가장 쉬운 방법 · Claude에게 링크 주고 부탁하기 (설정에 따라 안 될 수도 있음)</p><p style="font-size:36px;line-height:1.4;color:#1b1b1b">“깃허브 링크 + 이 스킬 등록할 수 있게 만들어 줘”</p></div></div>
+<p style="font-size:32px;font-weight:700;color:#55595e">안 되면 직접 올리기 (ZIP)</p>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">1</p>
+<svg aria-label="내려받기 아이콘" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.0000)"><path d="M32 6 V38" stroke="#1f4e8c" stroke-width="4"/><path d="M21 28 L32 39 L43 28" stroke="#1f4e8c" stroke-width="4"/><path d="M8 40 V54 H56 V40" stroke="#1b1b1b" stroke-width="3"/><rect x="20" y="46" width="24" height="5" rx="2" fill="#c9c9c3"/></g></svg>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:330px">ZIP 내려받기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">깃허브 저장소에서 초록색 Code 버튼 → Download ZIP</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">2</p>
+<svg aria-label="폴더를 찾는 아이콘" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.0000)"><path d="M4 16 a3 3 0 0 1 3 -3 H22 L27 18 H51 a3 3 0 0 1 3 3 V48 a3 3 0 0 1 -3 3 H7 a3 3 0 0 1 -3 -3 Z" fill="#dbe6f3" stroke="#1b1b1b" stroke-width="3"/><circle cx="43" cy="42" r="10" fill="#fff" stroke="#1f4e8c" stroke-width="4"/><line x1="50" y1="49" x2="58" y2="57" stroke="#1f4e8c" stroke-width="5"/></g></svg>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:330px">스킬 폴더 찾기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">압축을 풀고 SKILL.md가 들어 있는 폴더 하나 고르기</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">3</p>
+<svg aria-label="ZIP 압축 폴더 아이콘" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.0000)"><path d="M4 16 a3 3 0 0 1 3 -3 H22 L27 18 H57 a3 3 0 0 1 3 3 V52 a3 3 0 0 1 -3 3 H7 a3 3 0 0 1 -3 -3 Z" fill="#e9a23b" stroke="#1b1b1b" stroke-width="3"/><rect x="33" y="20" width="4" height="4" fill="#1b1b1b"/><rect x="29" y="25" width="4" height="4" fill="#1b1b1b"/><rect x="33" y="30" width="4" height="4" fill="#1b1b1b"/><rect x="29" y="35" width="4" height="4" fill="#1b1b1b"/><rect x="33" y="40" width="4" height="4" fill="#1b1b1b"/><rect x="28" y="45" width="10" height="8" rx="1.5" fill="#fff" stroke="#1b1b1b" stroke-width="2.5"/></g></svg>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:330px">폴더째 압축</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">그 폴더를 우클릭해서 ZIP으로 압축 (안의 파일만 압축하면 인식 안 됨)</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:12px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">4</p>
+<svg aria-label="업로드 아이콘" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex:none;" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.0000)"><path d="M18 46 H14 a10 10 0 0 1 0 -20 a14 14 0 0 1 27 -5 a11 11 0 0 1 9 25 H46" fill="#fff" stroke="#1b1b1b" stroke-width="3"/><path d="M32 58 V32" stroke="#1f4e8c" stroke-width="4"/><path d="M23 40 L32 31 L41 40" stroke="#1f4e8c" stroke-width="4"/></g></svg>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:330px">올리고 켜기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">Customize(사용자 지정) → Skills → + → Upload a skill → 켜기</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 27</p>
+
+</section>
+<section id="skill-install-each" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">3부 · 다른 사람이 만든 스킬</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">5개 스킬, 이렇게 등록해요</h2>
+</div>
+<table style="width:1664px;border-collapse:collapse;color:#1b1b1b">
+<tr>
+<th style="width:22%;padding:12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:28px;font-weight:700;color:#55595e">스킬</th>
+<th style="width:35%;padding:12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:28px;font-weight:700;color:#55595e">Claude 앱 (웹·데스크톱)</th>
+<th style="width:43%;padding:12px;text-align:left;border-bottom:2px solid #1b1b1b;font-size:28px;font-weight:700;color:#55595e">Claude Code (터미널 명령어)</th>
+</tr>
+<tr>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:30px;font-weight:700;line-height:1.35"><span style="color:#1f4e8c">1</span>&#160; skills</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:28px;line-height:1.4;color:#55595e">폴더를 하나씩 골라 올리기 (예: grill-me)</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:26px;font-family:Consolas, 'Courier New', monospace;line-height:1.4;color:#1b1b1b;word-break:break-all">claude plugin install mattpocock-skills@claude-plugins-official</td>
+</tr>
+<tr>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:30px;font-weight:700;line-height:1.35"><span style="color:#1f4e8c">2</span>&#160; superpowers</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:28px;line-height:1.4;color:#55595e">폴더를 하나씩 골라 올리기 (예: brainstorming)</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:26px;font-family:Consolas, 'Courier New', monospace;line-height:1.4;color:#1b1b1b;word-break:break-all">/plugin install superpowers@claude-plugins-official</td>
+</tr>
+<tr>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:30px;font-weight:700;line-height:1.35"><span style="color:#1f4e8c">3</span>&#160; skills (공식)</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:28px;line-height:1.4;color:#55595e">유료 요금제엔 이미 있음 → 켜기만</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:26px;font-family:Consolas, 'Courier New', monospace;line-height:1.4;color:#1b1b1b;word-break:break-all">/plugin marketplace add anthropics/skills</td>
+</tr>
+<tr>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:30px;font-weight:700;line-height:1.35"><span style="color:#1f4e8c">4</span>&#160; ui-ux-pro-max</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:28px;line-height:1.4;color:#55595e">올리기용 파일 없음 → Claude Code 권장</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:26px;font-family:Consolas, 'Courier New', monospace;line-height:1.4;color:#1b1b1b;word-break:break-all">/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill<br>/plugin install ui-ux-pro-max@ui-ux-pro-max-skill</td>
+</tr>
+<tr>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:30px;font-weight:700;line-height:1.35"><span style="color:#1f4e8c">5</span>&#160; awesome-claude-skills</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:28px;line-height:1.4;color:#55595e">링크 모음 → 들어간 저장소에서 같은 방법</td>
+<td style="padding:10px 12px;border-bottom:1px solid #d5d5d0;font-size:26px;font-family:Consolas, 'Courier New', monospace;line-height:1.4;color:#1b1b1b;word-break:break-all">—</td>
+</tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 28</p>
+
+</section>
+<section id="part4" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px;justify-content:center">
+<p style="font-size:52px;font-weight:700;line-height:1.2;color:#1f4e8c">4부</p>
+<h2 style="font-size:92px;font-weight:900;line-height:1.2;color:#1b1b1b">제작 과정</h2>
+<p style="width:1500px;font-size:42px;line-height:1.5;color:#55595e">스킬이 있으면 실제로 어떻게 주고받는지 보여 드릴게요</p>
+<div style="display:flex;flex-direction:column;padding:28px 0 0;border-top:3px solid #1b1b1b">
+<ul style="font-size:38px;line-height:1.7;color:#1b1b1b">
+<li>만드는 단계와 요청 문장</li>
+<li>실제로 고친 사례</li>
+<li>고친 내용을 스킬에 추가</li>
+</ul>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 29</p>
+
+</section>
+<section id="steps" style="background:#fcfcfa">
+  <p id="e1-c9ljxw" style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Noto Sans KR', Arial, sans-serif; font-size:28px; color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 30</p>
+  <div id="pdc8a3ce0a6e1r0-3b5d5d9e" style="position:absolute; top:128px; left:128px; width:1664px; height:146px; display:flex; flex-direction:column; gap:10px; padding:0 0 24px; border-bottom:3px solid #1b1b1b">
+    <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:30px; font-weight:500; color:#6b7076">4부 · 제작 과정</p>
+    <h2 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.2; color:#1b1b1b">자료 하나, 이 순서로 만들어요</h2>
+  </div>
+  <div style="position:absolute; top:390px; left:160px; width:1407px; height:3px; background:#d5d5d0"></div>
+  <div id="pdc8a3ce0a6e1r1-3b5d5d9e" style="position:absolute; top:360px; left:128px; width:1664px; display:grid; gap:24px; grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr">
+    <div style="display:flex; flex-direction:column; gap:18px">
+      <div style="display:flex; align-items:center; justify-content:center; width:64px; height:64px; background:#fcfcfa; border:3px solid #1f4e8c; border-radius:50%">
+        <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; font-weight:700; line-height:1; color:#1f4e8c">1</p>
+      </div>
+      <h3 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; font-weight:700; line-height:1.3; color:#1b1b1b">자료 주기</h3>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:32px; line-height:1.5; color:#55595e">교과서·지도서 PDF, 기존 PPT, 대본</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:18px">
+      <div style="display:flex; align-items:center; justify-content:center; width:64px; height:64px; background:#fcfcfa; border:3px solid #1f4e8c; border-radius:50%">
+        <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; font-weight:700; line-height:1; color:#1f4e8c">2</p>
+      </div>
+      <h3 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; font-weight:700; line-height:1.3; color:#1b1b1b">질문에 답하기</h3>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:32px; line-height:1.5; color:#55595e">몇 차시로, 어디까지, 어떤 활동으로</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:18px">
+      <div style="display:flex; align-items:center; justify-content:center; width:64px; height:64px; background:#fcfcfa; border:3px solid #1f4e8c; border-radius:50%">
+        <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; font-weight:700; line-height:1; color:#1f4e8c">3</p>
+      </div>
+      <h3 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; font-weight:700; line-height:1.3; color:#1b1b1b">초안 받기</h3>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:32px; line-height:1.5; color:#55595e">스킬 규칙대로 만든 첫 버전</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:18px">
+      <div style="display:flex; align-items:center; justify-content:center; width:64px; height:64px; background:#fcfcfa; border:3px solid #1f4e8c; border-radius:50%">
+        <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; font-weight:700; line-height:1; color:#1f4e8c">4</p>
+      </div>
+      <h3 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; font-weight:700; line-height:1.3; color:#1b1b1b">직접 열어 보기</h3>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:32px; line-height:1.5; color:#55595e">학생 자리에서 끝까지 넘겨 보기</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:18px">
+      <div style="display:flex; align-items:center; justify-content:center; width:64px; height:64px; background:#fcfcfa; border:3px solid #1f4e8c; border-radius:50%">
+        <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; font-weight:700; line-height:1; color:#1f4e8c">5</p>
+      </div>
+      <h3 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; font-weight:700; line-height:1.3; color:#1b1b1b">고칠 점 말하기</h3>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:32px; line-height:1.5; color:#55595e">화면 캡처 + 어디가 이상한지</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:18px">
+      <div style="display:flex; align-items:center; justify-content:center; width:64px; height:64px; background:#fcfcfa; border:3px solid #1f4e8c; border-radius:50%">
+        <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:36px; font-weight:700; line-height:1; color:#1f4e8c">6</p>
+      </div>
+      <h3 style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:38px; font-weight:700; line-height:1.3; color:#1b1b1b">수업하고 정리</h3>
+      <p style="font-family:'Noto Sans KR', Arial, sans-serif; font-size:32px; line-height:1.5; color:#55595e">수업 후 느낀 점을 스킬에 한 줄 추가</p>
+    </div>
+  </div>
+  <div style="position:absolute; top:700px; left:691px; width:800px; height:22px; border-left:3px solid #1f4e8c; border-right:3px solid #1f4e8c; border-bottom:3px solid #1f4e8c"></div>
+  <p style="position:absolute; top:740px; left:691px; width:800px; text-align:center; font-family:'Noto Sans KR', Arial, sans-serif; font-size:34px; font-weight:700; color:#1f4e8c">3~5단계는 여러 번 반복</p>
+  
+</section>
+<section id="prompts" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">4부 · 제작 과정</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">실제로는 이렇게 말해요</h2>
+</div>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:28px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:240px">슬라이드</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">“교과서 6단원 2차시(○○~○○쪽)로 수업 슬라이드 만들어 줘. 퀴즈는 O/X 위주로.”</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:28px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:240px">수업 웹앱</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">“이 PPT로 45분 수업 웹앱 만들어 줘. 학생이 태블릿으로 직접 해 볼 수 있게.”</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:28px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:240px">고치기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">“5장 그림이 글자와 겹쳐. 그림을 오른쪽으로 옮기고 글자는 왼쪽에.”</p>
+</div>
+</div>
+<p style="font-size:38px;line-height:1.5;color:#55595e"><b style="color:#1b1b1b">무엇으로 · 어디까지 · 학생이 무엇을 하는지</b>를 넣으면 되묻는 질문이 줄어요</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 31</p>
+
+</section>
+<section id="feedback" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">4부 · 실제 사례</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">“정면도가 맞는데 초록불이 안 켜져”</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+<div style="display:flex;flex-direction:column;gap:20px;padding:8px 48px 8px 0">
+<p style="font-size:36px;font-weight:700;color:#55595e">내가 보낸 것</p>
+<ul style="font-size:38px;line-height:1.6;color:#1b1b1b">
+<li>문제 화면 캡처 한 장</li>
+<li>“정면도 맞는데 초록불이 안 켜져”</li>
+<li>“전체적으로 점검해 줘”</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;padding:8px 0 8px 48px;border-left:1px solid #d5d5d0">
+<p style="font-size:36px;font-weight:700;color:#1f4e8c">돌아온 것</p>
+<ul style="font-size:38px;line-height:1.6;color:#1b1b1b">
+<li>원인: 1번 정답표가 위아래로 뒤집혀 있었음</li>
+<li>3D 모양에서 정답을 다시 계산해 15개 전부 대조</li>
+<li>태블릿에서 칸 밖으로 끌면 생기는 오류도 함께 수정</li>
+</ul>
+</div>
+</div>
+<p style="font-size:38px;line-height:1.5;color:#55595e"><b style="color:#1b1b1b">캡처 + 증상 + “전체 점검”</b> 한마디면 다른 곳까지 같이 봐 줘요</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 32</p>
+
+</section>
+<section id="grow" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">4부 · 스킬 키우기</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">한 번 고친 건 스킬에 한 줄</h2>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:20px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b">
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">수업해 보니</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">“퀴즈가 모자라 시간이 남았어”</p>
+</div>
+<x-shape kind="arrow-right" style="background:#9a9a96;width:48px;height:28px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b">
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">요청</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">“이 내용을 스킬에 추가해 줘”</p>
+</div>
+<x-shape kind="arrow-right" style="background:#9a9a96;width:48px;height:28px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b">
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">다음부터</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">처음부터 퀴즈 5~6개로 제작</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#f0f0ec;border:1px solid #d5d5d0;padding:28px 36px">
+<p style="font-size:32px;font-weight:700;color:#55595e">내 스킬에 실제로 들어 있는 문장</p>
+<p style="font-size:36px;line-height:1.5">“분량이 모자라다는 피드백이 오면 퀴즈 장을 더한다.”</p>
+<p style="font-size:36px;line-height:1.5">“영상 길이는 10분 이하만.”</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 33</p>
+
+</section>
+<section id="part5" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px;justify-content:center">
+<p style="font-size:52px;font-weight:700;line-height:1.2;color:#1f4e8c">5부</p>
+<h2 style="font-size:92px;font-weight:900;line-height:1.2;color:#1b1b1b">주의할 점 · 시작하기</h2>
+<p style="width:1500px;font-size:42px;line-height:1.5;color:#55595e">올리기 전에 볼 것, 그리고 처음 해 볼 것</p>
+<div style="display:flex;flex-direction:column;padding:28px 0 0;border-top:3px solid #1b1b1b">
+<ul style="font-size:38px;line-height:1.7;color:#1b1b1b">
+<li>인터넷에 올리기: 깃허브 · 버셀 · 넷리파이</li>
+<li>저작권 · 개인정보 · 사실 확인</li>
+<li>다음 주 수업 하나로 시작하기</li>
+<li>질의응답</li>
+</ul>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 34</p>
+
+</section>
+<section id="upload-what" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">5부 · 인터넷에 올리기</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">만든 파일, 주소로 열리게 하려면?</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0">
+<div style="display:flex;flex-direction:column;gap:18px;padding:8px 44px 8px 0">
+<p style="font-size:60px;font-weight:700;line-height:1.2;color:#1f4e8c">깃허브 <span style="font-size:34px;font-weight:500;color:#6b7076">GitHub</span></p>
+<p style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">파일 보관소</p>
+<p style="font-size:34px;line-height:1.5;color:#55595e">파일을 올려 두는 창고. Pages 기능을 켜면 여기서도 바로 주소가 생겨요</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px;padding:8px 44px;border-left:1px solid #d5d5d0">
+<p style="font-size:60px;font-weight:700;line-height:1.2;color:#1f4e8c">버셀 <span style="font-size:34px;font-weight:500;color:#6b7076">Vercel</span></p>
+<p style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">주소를 만들어 주는 곳</p>
+<p style="font-size:34px;line-height:1.5;color:#55595e">깃허브와 연결해 두면 ○○.vercel.app 주소가 생겨요. 제 자료실도 여기 있어요</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px;padding:8px 0 8px 44px;border-left:1px solid #d5d5d0">
+<p style="font-size:60px;font-weight:700;line-height:1.2;color:#1f4e8c">넷리파이 <span style="font-size:34px;font-weight:500;color:#6b7076">Netlify</span></p>
+<p style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">버셀과 같은 역할</p>
+<p style="font-size:34px;line-height:1.5;color:#55595e">폴더를 끌어다 놓기만 해도 ○○.netlify.app 주소가 생겨요</p>
+</div>
+</div>
+<p style="font-size:36px;line-height:1.5;color:#55595e">셋 다 <b style="color:#1b1b1b">무료 요금제</b>가 있어서 수업 자료 올리는 데는 충분해요. <span style="font-size:30px;color:#6b7076">(2026년 11월 기준)</span></p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 35</p>
+
+</section>
+<section id="upload-netlify" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">5부 · 인터넷에 올리기</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">제일 쉬운 방법: 넷리파이에 끌어다 놓기</h2>
+</div>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:26px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">1</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">폴더 준비</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">첫 화면 파일 이름을 index.html로 바꿔 폴더 하나에 넣기</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:26px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">2</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">사이트 열기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">app.netlify.com/drop 접속 (무료 가입 후 로그인)</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:26px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">3</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">끌어다 놓기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">폴더를 화면에 그대로 드래그</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px;padding:26px 8px;border-bottom:1px solid #d5d5d0">
+<p style="font-size:42px;font-weight:700;color:#1f4e8c;width:56px">4</p>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b;width:400px">주소 받기</p>
+<p style="font-size:36px;line-height:1.45;color:#55595e;flex:1">○○.netlify.app 주소가 바로 생김</p>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.5;color:#6b7076">가입 없이도 올릴 수 있지만, 그러면 가입할 때까지 임시 비밀번호가 걸려요.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 36</p>
+
+</section>
+<section id="upload-github" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">5부 · 인터넷에 올리기</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">깃허브만으로도 바로 올릴 수 있어요</h2>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:20px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b">
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">① 저장소 만들기</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">새 저장소를 만들고 Public(공개)으로</p>
+</div>
+<x-shape kind="arrow-right" style="background:#9a9a96;width:48px;height:28px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b">
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">② 파일 올리기</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">Add file → Upload files로 끌어다 놓기 (첫 화면은 index.html)</p>
+</div>
+<x-shape kind="arrow-right" style="background:#9a9a96;width:48px;height:28px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b">
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">③ Pages 켜기</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">Settings → Pages에서 main 브랜치 선택 후 Save</p>
+</div>
+<x-shape kind="arrow-right" style="background:#9a9a96;width:48px;height:28px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:24px 0 0;border-top:3px solid #1b1b1b">
+<p style="font-size:32px;font-weight:700;color:#1f4e8c">④ 주소 생김</p>
+<p style="font-size:36px;line-height:1.45;color:#1b1b1b">1~2분 뒤 아이디.github.io/저장소이름</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#f0f0ec;border:1px solid #d5d5d0;padding:26px 36px">
+<p style="font-size:36px;line-height:1.5;color:#1b1b1b">파일을 다시 올리면 사이트도 알아서 바뀌어요. 주소를 짧게 하고 싶으면 버셀을 연결하면 돼요.</p>
+<p style="font-size:34px;line-height:1.5;color:#55595e">공개 저장소는 누구나 볼 수 있으니, 학생 이름이 든 파일은 올리지 않기</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 37</p>
+
+</section>
+<section id="care" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">5부 · 꼭 확인할 것</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">올리기 전에 이것만은 확인!</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">저작권</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">교과서 그림은 출처·쪽수 표시, 영화 포스터 같은 다른 저작물은 넣지 않기</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">개인정보</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">학생 이름·학번, API 키가 파일 안에 남아 있지 않은지</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">사실 확인</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">통계·인용·영상 링크는 실제로 있는지, 교과서와 맞는지</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">다른 선생님 자료</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">공개하려면 허락을 받고, 만든 사람을 표시</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 38</p>
+
+</section>
+<section id="start" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:0 0 24px;border-bottom:3px solid #1b1b1b">
+<p style="font-size:30px;font-weight:500;color:#6b7076">5부 · 시작하기</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.2;color:#1b1b1b">다음 주 수업 하나만 해 보세요</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<p style="font-size:44px;font-weight:700;line-height:1.2;color:#1f4e8c">1</p>
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">한 차시 고르기</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">설명이 길어 학생이 지루해하던 차시</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<p style="font-size:44px;font-weight:700;line-height:1.2;color:#1f4e8c">2</p>
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">자료 주고 한 줄 요청</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">교과서 쪽수 + 학생이 할 활동 한 가지</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:20px 0 0;border-top:2px solid #1b1b1b">
+<p style="font-size:44px;font-weight:700;line-height:1.2;color:#1f4e8c">3</p>
+<h3 style="font-size:40px;font-weight:700;line-height:1.4;color:#1b1b1b">열어 보고 한 가지 고치기</h3>
+<p style="font-size:34px;line-height:1.5;color:#55595e">가장 거슬리는 것 하나만 말하기</p>
+</div>
+</div>
+<p style="font-size:38px;line-height:1.5;color:#1b1b1b;background:#f0f0ec;border:1px solid #d5d5d0;padding:24px 36px"><b>‘내 수업에서 꼭 하는 것·절대 안 하는 것’ 3줄</b>만 적어 두면 그게 첫 스킬이에요</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:28px;color:#6b7076">AI로 만드는 수업 자료 · 이주형T · 39</p>
+
+</section>
+<section id="end" style="background:#fcfcfa;color:#1b1b1b;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px;justify-content:center">
+<p style="font-size:36px;font-weight:700;color:#1f4e8c">질문 · 이야기 나누기</p>
+<h2 style="font-size:104px;font-weight:900;line-height:1.2;color:#1b1b1b">고맙습니다</h2>
+<div style="display:flex;flex-direction:column;gap:16px;padding:32px 0 0;border-top:3px solid #1b1b1b">
+<p style="font-size:42px;color:#55595e">오늘 본 자료랑 스킬 파일은 여기서 받으시면 돼요</p>
+<p style="font-size:52px;font-weight:700;color:#1f4e8c"><a target="_blank" rel="noopener" href="https://leejuhyung-lessons.vercel.app/" style="color:#1f4e8c">leejuhyung-lessons.vercel.app</a></p>
+</div>
+<p style="font-size:40px;font-weight:700;color:#1b1b1b">윤슬중 기술 이주형T</p>
+
+</section>
+</div>
+<div id="bar"><button id="prev">◀ 이전</button><span id="num"></span><button id="next">다음 ▶</button><button id="fs">전체 화면</button></div>
+<script>
+const S=[...document.querySelectorAll('#stage>section')];let i=0;
+function fit(){const k=Math.min(innerWidth/1920,innerHeight/1080);const st=document.getElementById('stage');st.style.transform=`scale(${k}) translate(-50%,-50%)`;}
+function go(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,j)=>s.classList.toggle('on',j===i));document.getElementById('num').textContent=(i+1)+' / '+S.length;history.replaceState(null,'','#slide-'+(i+1));}
+addEventListener('resize',fit);fit();
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(i+1)}else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(i-1)}else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1);else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
+document.getElementById('stage').addEventListener('click',e=>{if(e.target.closest('a'))return;go(e.clientX<innerWidth/3?i-1:i+1)});
+prev.onclick=()=>go(i-1);next.onclick=()=>go(i+1);fs.onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+</script>
+</body>
+</html>
